@@ -1,4 +1,6 @@
+import { Observable, delay } from 'rxjs';
 import { Component } from '@angular/core';
+import { LoadingService } from './core/services/loading/loading.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,19 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'pokedexBr';
+
+  openMenu!: boolean;
+  loading$: Observable<boolean>;
+
+  constructor(private loadingService: LoadingService) {
+    this.loading$ = this.loadingService.getLoading().pipe(delay(0));
+  }
+
+  receiveMenu(openMenu: boolean): void {
+    this.openMenu = openMenu;
+  }
+
+  receiveCloseMenu(closeMenu: boolean): void {
+    this.openMenu = !closeMenu;
+  }
 }

@@ -1,0 +1,35 @@
+.toolbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--white);
+  color: var(--solid-gray);
+  border-bottom:solid 2px var(--light-gray);
+  height: 4rem;
+
+  &__title {
+    &__poke {
+      color: var(--light-red);
+    }
+
+    &__br {
+      color: var(--solid-yellow);
+    }
+  }
+
+  &__title:hover {
+    cursor: pointer;
+  }
+}
+
+@media screen and (min-width: 800px) {
+
+  .toolbar {
+    justify-content: flex-end;
+
+    &__menu {
+      display: none;
+    }
+  }
+}

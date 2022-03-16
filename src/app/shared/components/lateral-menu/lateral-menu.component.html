@@ -1,0 +1,17 @@
+<div class="menu-lateral">
+    <img src="assets/images/pokebola-logo.svg" alt="Logotipo Pokébola" class="menu-lateral__logo" routerLink="/home">
+    <mat-selection-list #menuList [multiple]="false" (click)="eventLink()">
+      <mat-list-option routerLink="/home" class="menu-lateral__inactive" routerLinkActive="menu-lateral__linkActive">
+        <mat-icon mat-list-icon alt="Home" class="material-icons-outlined">home</mat-icon>
+        Home
+      </mat-list-option>
+      <mat-list-option routerLink="/pokedex" class="menu-lateral__inactive" routerLinkActive="menu-lateral__linkActive">
+        <mat-icon mat-list-icon alt="Pokédex" class="material-icons-two-tone">catching_pokemon</mat-icon>
+        Pokédex
+      </mat-list-option>
+      <mat-list-option routerLink="/games" class="menu-lateral__inactive" routerLinkActive="menu-lateral__linkActive">
+        <mat-icon mat-list-icon alt="Games" class="material-icons-outlined">games</mat-icon>
+        Games
+      </mat-list-option>
+    </mat-selection-list>
+</div>

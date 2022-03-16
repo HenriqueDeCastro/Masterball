@@ -1,1 +1,14 @@
-/* You can add global styles to this file, and also import other style files */
+
+@import "@fontsource/fredoka-one";
+
+@import './assets/scss/colors-pokemons-types.scss';
+@import './assets/scss/custom-theme.scss';
+@import './assets/scss/material-icons.scss';
+@import './assets/scss/open-sans.scss';
+@import './assets/scss/root-variables.scss';
+
+html, body { height: 100%; margin: 0; }
+* { font-family: "Fredoka One"; }
+
+
+

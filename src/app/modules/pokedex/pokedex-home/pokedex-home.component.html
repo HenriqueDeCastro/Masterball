@@ -1,0 +1,11 @@
+<h1>
+  <span>Pokédex</span>
+</h1>
+
+<ng-container *ngIf="pokemons$ | async as pokemons">
+  <div class="cards-list">
+    <ng-container *ngFor="let pokemon of pokemons">
+      <app-card-pokemon [pokemon]="pokemon"></app-card-pokemon>
+    </ng-container>
+  </div>
+</ng-container>

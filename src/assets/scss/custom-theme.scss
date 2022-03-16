@@ -1,0 +1,109 @@
+@import '~@angular/material/theming';
+@include mat-core();
+
+$dc-red: (
+    50: #ffe6ed,
+    100: #ffbfd2,
+    200: #ff95b5,
+    300: #ff6a97,
+    400: #fd4a7f,
+    500: #fc2e68,
+    600: #ea2a66,
+    700: #d42561,
+    800: #bf205d,
+    900: #9a1757,
+    A100: #ffe6ed,
+    A200: #ff95b5,
+    A400: #ff6a97,
+    A700: #fc2e68,
+    contrast: (
+        50: rgba(white, 0.87),
+        100: rgba(white, 0.87),
+        200: rgba(white, 0.87),
+        300: rgba(white, 0.87),
+        400: rgba(white, 0.87),
+        500: black,
+        600: black,
+        700: black,
+        800: black,
+        900: black,
+        A100: rgba(white, 0.87),
+        A200: rgba(white, 0.87),
+        A400: rgba(white, 0.87),
+        A700: rgba(white, 0.87)
+    )
+);
+
+$dc-yellow: (
+    50: #fffde7,
+    100: #fff8c5,
+    200: #fff49f,
+    300: #feef79,
+    400: #fcea5b,
+    500: #fae53e,
+    600: #fcd63d,
+    700: #f9be35,
+    800: #f6a72e,
+    900: #f17f21,
+    A100: #fff8c5,
+    A200: #fff49f,
+    A400: #fcea5b,
+    A700: #f9be35,
+    contrast: (
+        50: rgba(white, 0.87),
+        100: rgba(white, 0.87),
+        200: rgba(white, 0.87),
+        300: rgba(white, 0.87),
+        400: rgba(white, 0.87),
+        500: white,
+        600: white,
+        700: white,
+        800: white,
+        900: white,
+        A100: rgba(white, 0.87),
+        A200: rgba(white, 0.87),
+        A400: rgba(white, 0.87),
+        A700: rgba(white, 0.87)
+    )
+);
+
+$dc-purple: (
+    50: #e9ebf1,
+    100: #c8cddd,
+    200: #a6adc6,
+    300: #848dae,
+    400: #6b749e,
+    500: #535c8f,
+    600: #4c5486,
+    700: #434a7a,
+    800: #3c416d,
+    900: #303154,
+    A100: #c8cddd,
+    A200: #a6adc6,
+    A400: #6b749e,
+    A700: #3c416d,
+    contrast: (
+        50: rgba(white, 0.87),
+        100: rgba(white, 0.87),
+        200: rgba(white, 0.87),
+        300: rgba(white, 0.87),
+        400: rgba(white, 0.87),
+        500: white,
+        600: white,
+        700: white,
+        800: white,
+        900: white,
+        A100: rgba(white, 0.87),
+        A200: rgba(white, 0.87),
+        A400: rgba(white, 0.87),
+        A700: rgba(white, 0.87),
+    )
+);
+
+$pokeInfo-primary: mat-palette($dc-red, A700);
+$pokeInfo-accent: mat-palette($dc-yellow,A700);
+$pokeInfo-warn: mat-palette($dc-purple, A700);
+
+$pokeInfo-theme: mat-light-theme($pokeInfo-primary, $pokeInfo-accent, $pokeInfo-warn);
+@include angular-material-theme($pokeInfo-theme);
+

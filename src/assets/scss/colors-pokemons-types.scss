@@ -1,0 +1,166 @@
+// background page
+$bg-page-bug: #a8b820;
+$bg-page-dark: #705848;
+$bg-page-dragon: #7038f8;
+$bg-page-electric: #f8d030;
+$bg-page-fairy: #ee99ac;
+$bg-page-fighting: #c03028;
+$bg-page-fire: #f2cba0; // ok
+$bg-page-flying: #a890f0;
+$bg-page-ghost: #705898;
+$bg-page-grass: #91caa5; // ok
+$bg-page-ground: #e0c068;
+$bg-page-ice: #98d8d8;
+$bg-page-normal: #a8a878;
+$bg-page-poison: #a040a0;
+$bg-page-psychic: #f85888;
+$bg-page-rock: #b8a038;
+$bg-page-steel: #b8b8d0;
+$bg-page-water: #add8e6;
+
+// backgroung icon
+$bg-icon-bug: #a8b820;
+$bg-icon-dark: #705848;
+$bg-icon-dragon: #7038f8;
+$bg-icon-electric: #f8d030;
+$bg-icon-fairy: #ee99ac;
+$bg-icon-fighting: #c03028;
+$bg-icon-fire: #FBA54C;
+$bg-icon-flying: #a890f0;
+$bg-icon-ghost: #705898;
+$bg-icon-grass: #5FBD58;
+$bg-icon-ground: #e0c068;
+$bg-icon-ice: #98d8d8;
+$bg-icon-normal: #a8a878;
+$bg-icon-poison: #a040a0;
+$bg-icon-psychic: #f85888;
+$bg-icon-rock: #b8a038;
+$bg-icon-steel: #b8b8d0;
+$bg-icon-water: #539DDF;
+
+@mixin type($color) {
+  background-color: $color;
+  border-color: $color;
+}
+
+.type-page {
+  color: var(--white);
+
+  &__bug {
+    @include type($bg-page-bug);
+  }
+  &__dragon {
+    @include type($bg-page-bug);
+  }
+  &__dark {
+    @include type($bg-page-dark);
+  }
+  &__dragon {
+    @include type($bg-page-dragon);
+  }
+  &__electric {
+    @include type($bg-page-electric);
+  }
+  &__fairy {
+    @include type($bg-page-fairy);
+  }
+  &__fighting {
+    @include type($bg-page-fighting);
+  }
+  &__fire {
+    @include type($bg-page-fire);
+  }
+  &__flying {
+    @include type($bg-page-flying);
+  }
+  &__ghost {
+    @include type($bg-page-ghost);
+  }
+  &__grass {
+    @include type($bg-page-grass);
+  }
+  &__ground {
+    @include type($bg-page-ground);
+  }
+  &__ice {
+    @include type($bg-page-ice);
+  }
+  &__normal {
+    @include type($bg-page-normal);
+  }
+  &__poison {
+    @include type($bg-page-poison);
+  }
+  &__psychic {
+    @include type($bg-page-psychic);
+  }
+  &__rock {
+    @include type($bg-page-rock);
+  }
+  &__steel {
+    @include type($bg-page-steel);
+  }
+  &__water {
+    @include type($bg-page-water);
+  }
+}
+
+.type-icon {
+  &__bug {
+    @include type($bg-icon-bug);
+  }
+  &__dragon {
+    @include type($bg-icon-bug);
+  }
+  &__dark {
+    @include type($bg-icon-dark);
+  }
+  &__dragon {
+    @include type($bg-icon-dragon);
+  }
+  &__electric {
+    @include type($bg-icon-electric);
+  }
+  &__fairy {
+    @include type($bg-icon-fairy);
+  }
+  &__fighting {
+    @include type($bg-icon-fighting);
+  }
+  &__fire {
+    @include type($bg-icon-fire);
+  }
+  &__flying {
+    @include type($bg-icon-flying);
+  }
+  &__ghost {
+    @include type($bg-icon-ghost);
+  }
+  &__grass {
+    @include type($bg-icon-grass);
+  }
+  &__ground {
+    @include type($bg-icon-ground);
+  }
+  &__ice {
+    @include type($bg-icon-ice);
+  }
+  &__normal {
+    @include type($bg-icon-normal);
+  }
+  &__poison {
+    @include type($bg-icon-poison);
+  }
+  &__psychic {
+    @include type($bg-icon-psychic);
+  }
+  &__rock {
+    @include type($bg-icon-rock);
+  }
+  &__steel {
+    @include type($bg-icon-steel);
+  }
+  &__water {
+    @include type($bg-icon-water);
+  }
+}

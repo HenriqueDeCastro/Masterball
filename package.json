@@ -1,5 +1,5 @@
 {
-  "name": "pokedex-br",
+  "name": "poke-info",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -11,13 +11,18 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "~13.2.0",
+    "@angular/cdk": "^13.2.5",
     "@angular/common": "~13.2.0",
     "@angular/compiler": "~13.2.0",
     "@angular/core": "~13.2.0",
     "@angular/forms": "~13.2.0",
+    "@angular/material": "^13.2.5",
     "@angular/platform-browser": "~13.2.0",
     "@angular/platform-browser-dynamic": "~13.2.0",
     "@angular/router": "~13.2.0",
+    "@fontsource/fredoka-one": "^4.5.2",
+    "@fontsource/open-sans": "^4.5.6",
+    "material-icons": "^1.10.8",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"

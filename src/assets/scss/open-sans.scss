@@ -1,0 +1,13 @@
+@import "~@fontsource/open-sans/scss/mixins";
+
+@include fontFace(
+  $weight: 700,
+  $display: fallback,
+  $fontDir: "~@fontsource/open-sans/files"
+);
+
+@include fontFace(
+  $weight: 600,
+  $display: fallback,
+  $fontDir: "~@fontsource/open-sans/files"
+);
