@@ -2,8 +2,8 @@
   <button mat-icon-button class="toolbar__menu" aria-label="Menu" (click)="eventMenu()">
     <mat-icon>{{openMenu? 'close' : 'menu'}}</mat-icon>
   </button>
-  <div class="toolbar__title" routerLink="/home">
-    <h1>
+  <div routerLink="/home">
+    <h1 class="toolbar__title">
       <span class="toolbar__title__poke">Poké</span>
       <span class="toolbar__title__br">Info</span>
     </h1>

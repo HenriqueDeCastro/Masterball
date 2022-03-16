@@ -10,15 +10,15 @@ main {
 .menu-container {
   position: absolute;
   left: -100vw;
-  transition: .25s;
+  transition: .50s;
 
   &__active {
     left: 0;
-    transition: .25s;
+    transition: .50s;
   }
 }
 
-@media screen and (min-width: 800px) {
+@media screen and (min-width: 950px) {
 
   .grid-container {
     display: grid;

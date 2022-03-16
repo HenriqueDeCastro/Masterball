@@ -5,6 +5,10 @@
   height: 100vh;
   width: 100vw;
 
+  mat-list-option {
+    font-size: 1.25rem;
+  }
+
   &__logo {
     width: 4rem;
     align-self: center;
@@ -30,10 +34,14 @@
   }
 }
 
-@media screen and (min-width: 800px) {
+@media screen and (min-width: 950px) {
 
   .menu-lateral {
     width: 250px;
+
+    mat-list-option {
+      font-size: 1rem;
+    }
 
     &__logo {
       width: 9rem;
