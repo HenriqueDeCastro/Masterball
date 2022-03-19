@@ -2,13 +2,12 @@ header {
   position: sticky;
   position: -webkit-sticky;
   top: 0;
-  z-index: 1000;
 }
 
 .doc-app {
   padding: 1rem;
   overflow-y: auto;
-  height: calc(100vh - 11vh);
+  height: calc(100vh - 21vh);
 }
 
 .loading {
