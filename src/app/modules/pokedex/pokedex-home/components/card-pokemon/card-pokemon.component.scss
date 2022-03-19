@@ -12,18 +12,18 @@
                       "card-image card-types card-id card-id";
 
   &__img {
-    width: 10vh;
+    width: 3rem;
   }
 
   &__title {
     font-family: "Open Sans";
     font-weight: 700;
-    font-size: 3.0vh;
-    padding-top: 0.75rem;
+    font-size: 1.25rem;
+    padding-top: 0.25rem;
   }
 
   &__id {
-    font-size: 6.0vh;
+    font-size: 2.25rem;
     margin: 0;
     color: var(--transparent-white);
   }
@@ -52,29 +52,32 @@
   justify-content: flex-end;
 }
 
-@media screen and (min-width: 700px) {
+@media screen and (min-width: 300px) {
   .card {
     &__img {
-      width: 8vh;
+      width: 5rem;
     }
 
     &__title {
-      font-size: 2vh;
+      font-size: 1.5rem;
+      padding-top: 0.75rem;
     }
 
     &__id {
-      font-size: 4.5vh;
+      font-size: 3rem;
+      padding: 0.075rem;
     }
   }
 }
 
 @media screen and (min-width: 1200px) {
-  .cards-list {
-    display: grid;
-    grid-column: 3;
-    grid-template-columns: 1fr 1fr 1fr;
+    .card {
+      &__title {
+        font-size: 1.25rem;
+      }
 
-    .card-pokemon {
+      &__id {
+        font-size: 3rem;
+      }
     }
-  }
 }

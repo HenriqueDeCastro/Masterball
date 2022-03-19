@@ -7,7 +7,7 @@
 @import './assets/scss/open-sans.scss';
 @import './assets/scss/root-variables.scss';
 
-html, body { height: 100%; margin: 0; }
+html, body { height: 100%; margin: 0; overflow: hidden; }
 * { font-family: "Fredoka One"; }
 
 

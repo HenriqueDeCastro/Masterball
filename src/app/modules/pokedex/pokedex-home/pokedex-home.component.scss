@@ -2,14 +2,14 @@
   display: grid;
   grid-column: 1;
   gap: 1.25rem;
-
 }
 
 @media screen and (min-width: 700px) {
   .cards-list {
     display: grid;
     grid-column: 7;
-    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
@@ -17,9 +17,14 @@
   .cards-list {
     display: grid;
     grid-column: 3;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
 
-    .card-pokemon {
-    }
+@media screen and (min-width: 1700px) {
+  .cards-list {
+    display: grid;
+    grid-column: 4;
+    grid-template-columns: repeat(4, 1fr);
   }
 }
