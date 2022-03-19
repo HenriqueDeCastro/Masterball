@@ -3,10 +3,10 @@
     <img src="{{linkImg}}{{pokemon.id}}.png" alt="{{pokemon.name}}" class="card__img">
   </div>
   <div class="card-title">
-    <span class="card__title">{{pokemon.name | titlecase}}</span>
+    <span class="card__title notranslate">{{pokemon.name | titlecase}}</span>
   </div>
   <div class="card-types card__types">
-      <app-card-pokemon-types [pokemonsTypes]="pokemon.types"></app-card-pokemon-types>
+      <app-icons-types [pokemonsTypes]="pokemon.types"></app-icons-types>
   </div>
   <div class="card-id">
     <h2 class="card__id">{{pokemon.id | pokedexId}}</h2>

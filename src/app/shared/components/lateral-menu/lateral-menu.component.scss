@@ -7,18 +7,26 @@
 
   mat-selection-list {
     overflow: auto;
-    height: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    position: sticky;
+    margin: 1rem 0rem 1rem;
   }
 
   mat-list-option {
     font-size: 1.25rem;
+    font-family: "Fredoka One";
   }
 
   &__logo {
-    width: 4rem;
+    width: 6rem;
     align-self: center;
     justify-content: center;
     padding: 16px;
+    position: sticky;
+    margin: 0.5rem;
   }
 
   &__logo:hover {
@@ -43,6 +51,20 @@
 
   .menu-lateral {
     width: 250px;
+
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--light-gray);
+      border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #888;
+      border-radius: 10px;
+    }
 
     mat-list-option {
       font-size: 1rem;

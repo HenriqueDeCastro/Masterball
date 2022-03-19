@@ -6,7 +6,6 @@ import { LateralMenuComponent } from './lateral-menu.component';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 
-
 @NgModule({
   declarations: [ LateralMenuComponent ],
   imports: [
