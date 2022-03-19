@@ -1,21 +1,20 @@
-<div class="grid-container">
+<div [ngClass]="openMenu? 'doc-app noscroll': 'doc-app scroll'">
+  <div class="grid-container">
+    <header>
+      <ng-container *ngIf="loading$ | async as loading">
+        <mat-progress-bar mode="indeterminate" class="loading"></mat-progress-bar>
+      </ng-container>
+      <app-toolbar [openMenu]="openMenu" (menu)="receiveMenu($event)"></app-toolbar>
+    </header>
 
-  <header>
-    <ng-container *ngIf="loading$ | async as loading">
-      <mat-progress-bar mode="indeterminate" class="loading"></mat-progress-bar>
-    </ng-container>
-    <app-toolbar [openMenu]="openMenu" (menu)="receiveMenu($event)"></app-toolbar>
-  </header>
+    <nav>
+      <div [ngClass]="openMenu? 'menu-container menu-container__active': 'menu-container'">
+        <app-lateral-menu (closeMenu)="receiveCloseMenu($event)"></app-lateral-menu>
+      </div>
+    </nav>
 
-  <nav>
-    <div [ngClass]="openMenu? 'menu-container menu-container__active': 'menu-container'">
-      <app-lateral-menu (closeMenu)="receiveCloseMenu($event)"></app-lateral-menu>
-    </div>
-  </nav>
-
-  <main>
-    <div class="doc-app">
+    <main>
       <router-outlet></router-outlet>
-    </div>
-  </main>
+    </main>
+  </div>
 </div>

@@ -5,6 +5,11 @@
   height: 100vh;
   width: 100vw;
 
+  mat-selection-list {
+    overflow: auto;
+    height: auto;
+  }
+
   mat-list-option {
     font-size: 1.25rem;
   }
