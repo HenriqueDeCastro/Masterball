@@ -8,9 +8,8 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class ToolbarComponent {
 
   @Output() menu: EventEmitter<boolean> = new EventEmitter();
-  @Input() openMenu!: boolean;
 
   eventMenu(): void {
-    this.menu.emit(!this.openMenu);
+    this.menu.emit(true);
   }
 }

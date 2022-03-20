@@ -4,7 +4,7 @@
       <ng-container *ngIf="loading$ | async as loading">
         <mat-progress-bar mode="indeterminate" class="loading"></mat-progress-bar>
       </ng-container>
-      <app-toolbar [openMenu]="openMenu" (menu)="receiveMenu($event)"></app-toolbar>
+      <app-toolbar (menu)="receiveMenu($event)"></app-toolbar>
     </header>
 
     <nav>
