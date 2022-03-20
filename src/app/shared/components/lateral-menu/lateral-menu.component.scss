@@ -8,7 +8,9 @@
   mat-selection-list {
     overflow: auto;
     width: 100%;
-    position: fixed; top: 0; bottom: 0;
+    position: sticky;
+    top: 0;
+    bottom: 0;
   }
 
   mat-list-option {
