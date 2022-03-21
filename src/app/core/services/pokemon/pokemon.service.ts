@@ -24,7 +24,10 @@ export class PokemonService {
   }
 
   getPokemons(): Observable<PokemonDetail[]> {
-    const params = new HttpParams().set('offset', this.pokemonStorageService.returnPokemons()?.length);
+    let params = new HttpParams();
+    params = params.set('limit', 24);
+    params = params.set('offset', this.pokemonStorageService.returnPokemons()?.length);
+
     return this.http.get<any>(this.url_api, { params }).pipe(
       mergeMap((generalInfo: PokemonGeneral): Observable<PokemonDetail[]> => {
         return forkJoin(generalInfo.results.map((pokemon: ResumeInfoPokeapi) => this.http.get<PokemonDetail>(`${this.url_api}/${pokemon.name}`)))

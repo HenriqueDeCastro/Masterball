@@ -1,0 +1,48 @@
+.view-more {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3rem;
+
+  &__btn {
+    font-size: 1rem;
+    padding: 0.5rem 1.25rem;
+    background-color: transparent;
+    border-radius: 100px;
+    border: 2.5px solid var(--solid-yellow);
+    transition: .25s;
+    font-family: "Fredoka One";
+
+    display: grid;
+    grid-column: 3;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+    width: 100%;
+  }
+
+  &__btn:hover {
+    background-color: var(--solid-yellow);
+    border: 2.5px solid var(--solid-yellow);
+    color: var(--white);
+    cursor: pointer;
+  }
+}
+
+
+@media screen and (min-width: 700px) {
+  .view-more {
+    padding: 1rem;
+
+    &__btn {
+      width: 50%;
+    }
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .view-more {
+    &__btn {
+      width: 33%;
+    }
+  }
+}

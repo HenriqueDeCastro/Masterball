@@ -14,26 +14,9 @@ export class PokedexHomeComponent implements OnInit {
 
   pokemons$!: Observable<PokemonDetail[]>;
 
-  constructor(
-    private activatedRoute: ActivatedRoute,
-    private pokemonService: PokemonService,
-    private pokemonStorageService: PokemonStorageService
-  ) {}
+  constructor(private pokemonService: PokemonService) {}
 
   ngOnInit(): void {
-    if(!this.pokemonStorageService.hasPokemons()) {
-      this.activatedRoute.params.subscribe(() => this.pokemons$ = this.activatedRoute.snapshot.data['pokemons']);
-    } else {
-      this.getPokemonsStorage();
-    }
-  }
-
-  private getPokemonsStorage(): void {
-    this.pokemons$ = this.pokemonService.returnPokemons();
-    this.pokemons$.subscribe(p => console.log(p))
-  }
-
-  private getPokemons() : void {
-    this.pokemonService.getPokemons();
+     this.pokemons$ = this.pokemonService.returnPokemons();
   }
 }
