@@ -20,7 +20,7 @@
     width: 100%;
   }
 
-  &__btn:hover {
+  &__btn:hover,  &__btn:active {
     background-color: var(--solid-yellow);
     border: 2.5px solid var(--solid-yellow);
     color: var(--white);
