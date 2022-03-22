@@ -9,7 +9,7 @@
     padding: 0.5rem 1.25rem;
     background-color: transparent;
     border-radius: 100px;
-    border: 2.5px solid var(--solid-yellow);
+    border: 2.5px solid var(--light-red);
     transition: .25s;
     font-family: "Fredoka One";
     cursor: pointer;
@@ -20,11 +20,10 @@
     align-items: center;
     width: 100%;
 
-    &:active {
-      background-color: var(--solid-yellow);
-      border: 2.5px solid var(--solid-yellow);
+    &:hover {
+      background-color: var(--light-red);
+      border: 2.5px solid var(--light-red);
       color: var(--white);
-      animation: beat 2s linear 2;
     }
   }
 }
@@ -36,16 +35,6 @@
 
     &__btn {
       width: 50%;
-    }
-  }
-}
-
-@media screen and (min-width: 950px) {
-  .view-more {
-    &__btn:hover {
-      background-color: var(--solid-yellow);
-      border: 2.5px solid var(--solid-yellow);
-      color: var(--white);
     }
   }
 }
