@@ -1,41 +1,41 @@
 // background page
 $bg-page-bug: #dce3a6; // ok
-$bg-page-dark: #705848;
-$bg-page-dragon: #7038f8;
-$bg-page-electric: #f8d030;
-$bg-page-fairy: #ee99ac;
-$bg-page-fighting: #c03028;
+$bg-page-dark: #a4958a; // ok
+$bg-page-dragon: #976ff9; // ok
+$bg-page-electric: #fce382; // ok
+$bg-page-fairy: #f5c7d2; // ok
+$bg-page-fighting: #de9692; // ok
 $bg-page-fire: #f2cba0; // ok
 $bg-page-flying: #a890f0;
-$bg-page-ghost: #705898;
+$bg-page-ghost: #b5a8c9; // ok
 $bg-page-grass: #91caa5; // ok
-$bg-page-ground: #e0c068;
-$bg-page-ice: #98d8d8;
+$bg-page-ground: #e6cd8a; // ok
+$bg-page-ice: #acdfdf; // ok
 $bg-page-normal: #d4d4be; // ok
 $bg-page-poison: #cb97cb; // ok
-$bg-page-psychic: #f85888;
-$bg-page-rock: #b8a038;
-$bg-page-steel: #b8b8d0;
+$bg-page-psychic: #fda1be; // ok
+$bg-page-rock: #d2c281; // ok
+$bg-page-steel: #cdcdde; // ok
 $bg-page-water: #add8e6; // ok
 
 // backgroung icon
 $bg-icon-bug: #a8b820;
 $bg-icon-dark: #705848;
 $bg-icon-dragon: #7038f8;
-$bg-icon-electric: #f8d030;
-$bg-icon-fairy: #ee99ac;
+$bg-icon-electric: #f7ca17;
+$bg-icon-fairy: #ea839a;
 $bg-icon-fighting: #c03028;
-$bg-icon-fire: #FBA54C;
+$bg-icon-fire: #fba54c;
 $bg-icon-flying: #a890f0;
 $bg-icon-ghost: #705898;
 $bg-icon-grass: #25a81c;
-$bg-icon-ground: #e0c068;
-$bg-icon-ice: #98d8d8;
+$bg-icon-ground: #d1a42b;
+$bg-icon-ice: #73caca;
 $bg-icon-normal: #a8a878;
 $bg-icon-poison: #a040a0;
 $bg-icon-psychic: #f85888;
 $bg-icon-rock: #b8a038;
-$bg-icon-steel: #b8b8d0;
+$bg-icon-steel: #a4a4bb;
 $bg-icon-water: #539DDF;
 
 @mixin type($color) {

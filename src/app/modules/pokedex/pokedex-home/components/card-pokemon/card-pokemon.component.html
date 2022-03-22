@@ -1,14 +1,16 @@
-<div class="card type-page type-page__{{pokemon.types[0].type.name}}">
-  <div class="card-image">
-    <img src="{{linkImg}}{{pokemon.id}}.png" alt="{{pokemon.name}}" class="card__img">
+<ng-container *ngIf="pokemon">
+  <div class="card type-page type-page__{{pokemon.types[0].type.name}}">
+    <div class="card-image">
+      <img src="{{linkImg}}{{pokemon.id}}.png" alt="{{pokemon.name}}" class="card__img">
+    </div>
+    <div class="card-title">
+      <span class="card__title notranslate">{{pokemon.name | titlecase}}</span>
+    </div>
+    <div class="card-types card__types">
+        <app-icons-types [pokemonsTypes]="pokemon.types"></app-icons-types>
+    </div>
+    <div class="card-id">
+      <h2 class="card__id">{{pokemon.id | pokedexId}}</h2>
+    </div>
   </div>
-  <div class="card-title">
-    <span class="card__title notranslate">{{pokemon.name | titlecase}}</span>
-  </div>
-  <div class="card-types card__types">
-      <app-icons-types [pokemonsTypes]="pokemon.types"></app-icons-types>
-  </div>
-  <div class="card-id">
-    <h2 class="card__id">{{pokemon.id | pokedexId}}</h2>
-  </div>
-</div>
+</ng-container>

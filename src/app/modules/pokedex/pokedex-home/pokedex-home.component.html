@@ -2,7 +2,7 @@
   <span>Pokédex</span>
 </h1>
 
-<ng-container *ngIf="pokemons$ | async as pokemons">
+<ng-container *ngIf="(pokemons$ | async) as pokemons">
   <div class="cards-list">
     <ng-container *ngFor="let pokemon of pokemons">
       <app-card-pokemon [pokemon]="pokemon" class="card-pokemon"></app-card-pokemon>
@@ -10,4 +10,4 @@
   </div>
 </ng-container>
 
-<app-btn-view-more></app-btn-view-more>
+<app-btn-view-more (clicked)="receivedClicked($event)"></app-btn-view-more>

@@ -1,8 +1,7 @@
-import { PokemonStorageService } from './../pokemon-storage/pokemon-storage.service';
 import { environment } from './../../../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { BehaviorSubject, forkJoin, mergeMap, Observable, map, tap } from 'rxjs';
+import { BehaviorSubject, forkJoin, mergeMap, Observable, map, tap, publishReplay } from 'rxjs';
 
 import { PokemonDetail, PokemonGeneral } from 'src/app/shared/models/interfaces/pokemon';
 import { ResumeInfoPokeapi } from 'src/app/shared/models/interfaces/resume-info-pokeapi';
@@ -17,16 +16,12 @@ export class PokemonService {
   url_api = `${URL_POKEAPI}/pokemon`;
   pokemonsSubject = new BehaviorSubject<PokemonDetail[]>([]);
 
-  constructor(private http: HttpClient, private pokemonStorageService: PokemonStorageService) {
-    if(this.pokemonStorageService.hasPokemons()) {
-      this.pokemonsSubject.next(this.pokemonStorageService.returnPokemons());
-    }
-  }
+  constructor(private http: HttpClient) {}
 
   getPokemons(): Observable<PokemonDetail[]> {
     let params = new HttpParams();
     params = params.set('limit', 24);
-    params = params.set('offset', this.pokemonStorageService.returnPokemons()?.length);
+    params = params.set('offset', this.pokemonsSubject?.value?.length);
 
     return this.http.get<any>(this.url_api, { params }).pipe(
       mergeMap((generalInfo: PokemonGeneral): Observable<PokemonDetail[]> => {
@@ -37,8 +32,7 @@ export class PokemonService {
   }
 
   private insertPokemons(pokemons: PokemonDetail[]): void {
-    this.pokemonStorageService.savePokemons(pokemons);
-    this.pokemonsSubject.next(pokemons);
+    this.pokemonsSubject.next(this.pokemonsSubject.getValue().concat(pokemons));
   }
 
   returnPokemons(): Observable<PokemonDetail[]> {

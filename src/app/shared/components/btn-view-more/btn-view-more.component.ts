@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-btn-view-more',
@@ -7,5 +7,9 @@ import { Component, Input } from '@angular/core';
 })
 export class BtnViewMoreComponent {
 
-  @Input() loading: boolean = true;
+  @Output() clicked: EventEmitter<boolean> = new EventEmitter();
+
+  clickedEmit(): void {
+    this.clicked.emit(true);
+  }
 }
