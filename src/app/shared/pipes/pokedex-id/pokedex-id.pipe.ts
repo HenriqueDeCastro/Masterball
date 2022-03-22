@@ -8,7 +8,7 @@ export class PokedexIdPipe implements PipeTransform {
   transform(value: number): string {
     let numberWithZeros: string;
 
-    if(value < 999) {
+    if(value < 99) {
       numberWithZeros = ('00' + value).slice(-3);
     } else {
       numberWithZeros = value.toString();

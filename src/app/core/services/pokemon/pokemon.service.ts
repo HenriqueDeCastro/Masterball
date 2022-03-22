@@ -20,8 +20,7 @@ export class PokemonService {
 
   getPokemons(): Observable<PokemonDetail[]> {
     let params = new HttpParams();
-    params = params.set('limit', 24);
-    params = params.set('offset', this.pokemonsSubject?.value?.length);
+    params = params.set('limit', 898);
 
     return this.http.get<any>(this.url_api, { params }).pipe(
       mergeMap((generalInfo: PokemonGeneral): Observable<PokemonDetail[]> => {
