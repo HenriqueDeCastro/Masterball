@@ -21,11 +21,12 @@
     &__br {
       color: var(--solid-yellow);
     }
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 
-  &__title:hover {
-    cursor: pointer;
-  }
 }
 
 @media screen and (min-width: 950px) {

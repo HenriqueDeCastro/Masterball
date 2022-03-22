@@ -12,19 +12,27 @@
     border: 2.5px solid var(--solid-yellow);
     transition: .25s;
     font-family: "Fredoka One";
+    cursor: pointer;
 
     display: grid;
     grid-column: 3;
     grid-template-columns: repeat(3, 1fr);
     align-items: center;
     width: 100%;
-  }
 
-  &__btn:hover,  &__btn:focus {
-    background-color: var(--solid-yellow);
-    border: 2.5px solid var(--solid-yellow);
-    color: var(--white);
-    cursor: pointer;
+    &:active {
+      background-color: var(--solid-yellow);
+      border: 2.5px solid var(--solid-yellow);
+      color: var(--white);
+      animation: beat 2s linear 2;
+    }
+
+    &:before {
+      background-color: var(--solid-red);
+      border: 2.5px solid var(--solid-yellow);
+      color: var(--white);
+      animation: beat 2s linear 2;
+    }
   }
 }
 
@@ -35,6 +43,16 @@
 
     &__btn {
       width: 50%;
+    }
+  }
+}
+
+@media screen and (min-width: 950px) {
+  .view-more {
+    &__btn:hover {
+      background-color: var(--solid-yellow);
+      border: 2.5px solid var(--solid-yellow);
+      color: var(--white);
     }
   }
 }

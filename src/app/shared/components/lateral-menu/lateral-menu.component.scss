@@ -29,11 +29,12 @@
     width: 6rem;
     align-self: center;
     justify-content: center;
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 
-  &__logo:hover {
-    cursor: pointer;
-  }
 
   &__inactive {
     background-color: transparent;
