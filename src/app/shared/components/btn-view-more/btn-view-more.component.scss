@@ -12,6 +12,7 @@
     border: 2.5px solid var(--light-red);
     transition: .25s;
     font-family: "Fredoka One";
+    -webkit-tap-highlight-color: transparent;
     cursor: pointer;
 
     display: grid;
@@ -20,14 +21,13 @@
     align-items: center;
     width: 100%;
 
-    &:hover {
+    &:hover, &:focus {
       background-color: var(--light-red);
       border: 2.5px solid var(--light-red);
       color: var(--white);
     }
   }
 }
-
 
 @media screen and (min-width: 700px) {
   .view-more {
