@@ -26,13 +26,6 @@
       color: var(--white);
       animation: beat 2s linear 2;
     }
-
-    &:before {
-      background-color: var(--solid-red);
-      border: 2.5px solid var(--solid-yellow);
-      color: var(--white);
-      animation: beat 2s linear 2;
-    }
   }
 }
 
