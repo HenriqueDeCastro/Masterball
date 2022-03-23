@@ -4,28 +4,40 @@
   align-items: center;
   margin-top: 3rem;
 
-  &__btn {
+  button {
     font-size: 1rem;
     padding: 0.5rem 1.25rem;
-    background-color: transparent;
     border-radius: 100px;
-    border: 2.5px solid var(--light-red);
     transition: .25s;
     font-family: "Fredoka One";
     -webkit-tap-highlight-color: transparent;
+    width: 100%;
     cursor: pointer;
+  }
+
+  &__enable {
+    background-color: transparent;
+    border: 2.5px solid var(--solid-purple);
 
     display: grid;
     grid-column: 3;
     grid-template-columns: repeat(3, 1fr);
     align-items: center;
-    width: 100%;
 
-    &:hover, &:focus {
-      background-color: var(--light-red);
-      border: 2.5px solid var(--light-red);
+    &:hover {
+      background-color: var(--solid-purple);
+      border: 2.5px solid var(--solid-purple);
       color: var(--white);
     }
+  }
+
+  &__loading {
+    background-color: var(--light-gray);
+    border: 2.5px solid var(--transparent-gray);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
 
@@ -33,7 +45,7 @@
   .view-more {
     padding: 1rem;
 
-    &__btn {
+    button {
       width: 50%;
     }
   }
@@ -41,7 +53,7 @@
 
 @media screen and (min-width: 1200px) {
   .view-more {
-    &__btn {
+    button {
       width: 33%;
     }
   }

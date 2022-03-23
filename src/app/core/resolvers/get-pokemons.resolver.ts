@@ -16,6 +16,11 @@ export class GetPokemonsResolver implements Resolve<PokemonDetail[] | null> {
   constructor(private pokemonService: PokemonService) {}
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<PokemonDetail[]> | null {
-    return this.pokemonService.getPokemons();
+    console.log(this.pokemonService.returnPokemons())
+    if(!this.pokemonService.hasPokemons()) {
+      return this.pokemonService.getPokemons();
+    } else {
+      return null;
+    }
   }
 }

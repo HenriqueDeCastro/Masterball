@@ -1,7 +1,14 @@
-<div class="view-more">
-  <button class="view-more__btn" (click)="clickedEmit()">
-    <mat-icon>expand_more</mat-icon>
-    <span>View more</span>
-    <div class="spacer"></div>
-  </button>
-</div>
+<ng-container *ngIf="{value:loading$ | async} as loading">
+  <div class="view-more">
+    <button [ngClass]="loading.value? 'view-more__loading':'view-more__enable'" (click)="clickedEmit()" [disabled]="loading.value">
+      <ng-container *ngIf="loading.value; else noloading">
+        <mat-spinner [diameter]="30"></mat-spinner>
+      </ng-container>
+      <ng-template #noloading>
+        <mat-icon>expand_more</mat-icon>
+        <span>View more</span>
+        <div class="spacer"></div>
+      </ng-template>
+    </button>
+  </div>
+</ng-container>

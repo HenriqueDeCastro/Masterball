@@ -1,21 +1,21 @@
 @import '~@angular/material/theming';
 @include mat-core();
 
-$dc-red: (
-    50: #ffe6ed,
-    100: #ffbfd2,
-    200: #ff95b5,
-    300: #ff6a97,
-    400: #fd4a7f,
-    500: #fc2e68,
-    600: #ea2a66,
-    700: #d42561,
-    800: #bf205d,
-    900: #9a1757,
-    A100: #ffe6ed,
-    A200: #ff95b5,
-    A400: #ff6a97,
-    A700: #fc2e68,
+$dc-purple: (
+    50: #f4e2f2,
+    100: #e3b6df,
+    200: #d185cb,
+    300: #be52b7,
+    400: #b022a8,
+    500: #9f0099,
+    600: #920095,
+    700: #80008e,
+    800: #6f0087,
+    900: #50007b,
+    A100: #f4e2f2,
+    A200: #e3b6df,
+    A400: #d185cb,
+    A700: #be52b7,
     contrast: (
         50: rgba(white, 0.87),
         100: rgba(white, 0.87),
@@ -34,21 +34,21 @@ $dc-red: (
     )
 );
 
-$dc-yellow: (
-    50: #fffde7,
-    100: #fff8c5,
-    200: #fff49f,
-    300: #feef79,
-    400: #fcea5b,
-    500: #fae53e,
-    600: #fcd63d,
-    700: #f9be35,
-    800: #f6a72e,
-    900: #f17f21,
-    A100: #fff8c5,
-    A200: #fff49f,
-    A400: #fcea5b,
-    A700: #f9be35,
+$dc-blue: (
+    50: #e5f0f8,
+    100: #c1d9f0,
+    200: #9ec2e5,
+    300: #7baadc,
+    400: #6199d9,
+    500: #4e89d6,
+    600: #487cc8,
+    700: #416bb6,
+    800: #395aa4,
+    900: #2c3d86,
+    A100: #e5f0f8,
+    A200: #c1d9f0,
+    A400: #7baadc,
+    A700: #9ec2e5,
     contrast: (
         50: rgba(white, 0.87),
         100: rgba(white, 0.87),
@@ -67,21 +67,21 @@ $dc-yellow: (
     )
 );
 
-$dc-purple: (
-    50: #e9ebf1,
-    100: #c8cddd,
-    200: #a6adc6,
-    300: #848dae,
-    400: #6b749e,
-    500: #535c8f,
-    600: #4c5486,
-    700: #434a7a,
-    800: #3c416d,
-    900: #303154,
-    A100: #c8cddd,
-    A200: #a6adc6,
-    A400: #6b749e,
-    A700: #3c416d,
+$dc-red: (
+    50: #feebee,
+    100: #fcced2,
+    200: #eb9c9b,
+    300: #e07675,
+    400: #e95953,
+    500: #ed4b3b,
+    600: #df423a,
+    700: #cd3833,
+    800: #c0322d,
+    900: #b02922,
+    A100: #e07675,
+    A200: #e95953,
+    A400: #ed4b3b,
+    A700: #df423a,
     contrast: (
         50: rgba(white, 0.87),
         100: rgba(white, 0.87),
@@ -100,10 +100,10 @@ $dc-purple: (
     )
 );
 
-$pokeInfo-primary: mat-palette($dc-red, A700);
-$pokeInfo-accent: mat-palette($dc-yellow,A700);
-$pokeInfo-warn: mat-palette($dc-purple, A700);
+$masterball-primary: mat-palette($dc-purple, A700);
+$masterball-accent: mat-palette($dc-blue,A700);
+$masterball-warn: mat-palette($dc-red, A700);
 
-$pokeInfo-theme: mat-light-theme($pokeInfo-primary, $pokeInfo-accent, $pokeInfo-warn);
-@include angular-material-theme($pokeInfo-theme);
+$masterball-theme: mat-light-theme($masterball-primary, $masterball-accent, $masterball-warn);
+@include angular-material-theme($masterball-theme);
 

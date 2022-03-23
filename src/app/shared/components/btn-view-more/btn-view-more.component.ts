@@ -1,4 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { delay, Observable } from 'rxjs';
+import { LoadingService } from 'src/app/core/services/loading/loading.service';
 
 @Component({
   selector: 'app-btn-view-more',
@@ -8,6 +10,11 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 export class BtnViewMoreComponent {
 
   @Output() clicked: EventEmitter<boolean> = new EventEmitter();
+  loading$: Observable<boolean>;
+
+  constructor(private loadingService: LoadingService) {
+    this.loading$ = this.loadingService.getLoading().pipe(delay(0));
+  }
 
   clickedEmit(): void {
     this.clicked.emit(true);

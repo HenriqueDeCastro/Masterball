@@ -21,7 +21,7 @@
 
     mat-icon {
       font-size: 2rem;
-      color: var(--light-red);
+      color: var(--solid-purple);
     }
   }
 
@@ -29,6 +29,7 @@
     width: 6rem;
     align-self: center;
     justify-content: center;
+    margin: 1rem;
 
     &:hover {
       cursor: pointer;
@@ -41,11 +42,11 @@
   }
 
   &__linkActive {
-    color: var(--light-red);
+    color: var(--solid-purple);
     background: var(--transparent-gray);
 
     .material-icons-two-tone {
-      filter: invert(35%) sepia(67%) saturate(3772%) hue-rotate(322deg) brightness(95%) contrast(107%);
+      filter: invert(43%) sepia(60%) saturate(574%) hue-rotate(254deg) brightness(91%) contrast(99%);
     }
   }
 }

@@ -26,6 +26,8 @@ export class PokedexHomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.pokemonsGet$.unsubscribe();
+    if(this.pokemonsGet$) {
+      this.pokemonsGet$.unsubscribe();
+    }
   }
 }

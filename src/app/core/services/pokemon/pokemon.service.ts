@@ -20,7 +20,8 @@ export class PokemonService {
 
   getPokemons(): Observable<PokemonDetail[]> {
     let params = new HttpParams();
-    params = params.set('limit', 898);
+    params = params.set('limit', 24);
+    params = params.set('offset', this.pokemonsSubject?.value?.length);
 
     return this.http.get<any>(this.url_api, { params }).pipe(
       mergeMap((generalInfo: PokemonGeneral): Observable<PokemonDetail[]> => {
@@ -30,11 +31,19 @@ export class PokemonService {
     );
   }
 
+  getPokemonsByType(): void {
+
+  }
+
   private insertPokemons(pokemons: PokemonDetail[]): void {
     this.pokemonsSubject.next(this.pokemonsSubject.getValue().concat(pokemons));
   }
 
   returnPokemons(): Observable<PokemonDetail[]> {
     return this.pokemonsSubject.asObservable();
+  }
+
+  hasPokemons(): boolean {
+    return this.pokemonsSubject?.value?.length > 0;
   }
 }
