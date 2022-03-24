@@ -4,47 +4,80 @@
   justify-content: space-between;
   align-items: center;
   background-color: var(--white);
-  // border-bottom:solid 2px var(--light-gray);
-
-  &__icon-pokemon {
-    font-size: 16rem;
-    position: fixed;
-    top: -8rem;
-    right: 12rem;
-    z-index: 1000;
-    color: var(--transparent-white);
-  }
 
   &__title {
-    background-size: 20rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-family: "Fredoka One";
+    cursor: pointer;
 
-    &__the {
-      font-size: 1rem;
-      color: var(--black);
+    &__image {
+      width: 8rem;
+      position: relative;
+      opacity: 0.065;
+      top: -1.65rem;
     }
 
-    &__master {
-      font-size: 1.5rem;
-      color: var(--solid-purple);
+    &__text {
+      position: absolute;
+
+      &__the {
+        font-size: 0.75rem;
+        color: var(--black);
+      }
+
+      &__master {
+        font-size: 1.25rem;
+        color: var(--solid-purple);
+      }
     }
 
-    &:hover {
-      cursor: pointer;
-    }
-
-    &__title:before{
-      content: "\e508";
-      font-family: "Material Icons";
-    }
   }
 
+}
+
+@media screen and (min-width: 300px) {
+
+  .toolbar {
+    &__title {
+      &__image {
+        width: 10rem;
+      }
+
+      &__text {
+        &__the {
+          font-size: 1rem;
+        }
+
+        &__master {
+          font-size: 1.5rem;
+        }
+      }
+    }
+  }
 }
 
 @media screen and (min-width: 950px) {
 
   .toolbar {
     justify-content: flex-end;
+
+    &__title {
+      &__image {
+        width: 11.5rem;
+      }
+
+      &__text {
+        &__the {
+          font-size: 1.25rem;
+        }
+
+        &__master {
+          font-size: 1.75rem;
+        }
+      }
+    }
 
     &__menu {
       display: none;
