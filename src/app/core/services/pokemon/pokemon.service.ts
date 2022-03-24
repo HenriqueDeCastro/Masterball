@@ -31,10 +31,6 @@ export class PokemonService {
     );
   }
 
-  getPokemonsByType(): void {
-
-  }
-
   private insertPokemons(pokemons: PokemonDetail[]): void {
     this.pokemonsSubject.next(this.pokemonsSubject.getValue().concat(pokemons));
   }

@@ -1,5 +1,5 @@
 import { PokemonService } from 'src/app/core/services/pokemon/pokemon.service';
-import { PokemonDetail } from './../../shared/models/interfaces/pokemon/pokemon-detail/pokemon-detail';
+import { PokemonDetail } from '../../../shared/models/interfaces/pokemon/pokemon-detail/pokemon-detail';
 import { Injectable } from '@angular/core';
 import {
   Resolve,
@@ -16,7 +16,6 @@ export class GetPokemonsResolver implements Resolve<PokemonDetail[] | null> {
   constructor(private pokemonService: PokemonService) {}
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<PokemonDetail[]> | null {
-    console.log(this.pokemonService.returnPokemons())
     if(!this.pokemonService.hasPokemons()) {
       return this.pokemonService.getPokemons();
     } else {

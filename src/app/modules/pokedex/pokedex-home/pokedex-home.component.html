@@ -2,9 +2,16 @@
   <span>Pokédex</span>
 </h1>
 
-<ng-container *ngIf="(pokemons$ | async) as pokemons">
+<ng-container *ngIf="{ pokemons: pokemons$ | async, types: types$ | async } as infos">
+
+  <div style="display: none;">
+    <ng-container *ngFor="let type of infos.types">
+      <span>{{type.name}}</span>
+    </ng-container>
+  </div>
+
   <div class="cards-list">
-    <ng-container *ngFor="let pokemon of pokemons">
+    <ng-container *ngFor="let pokemon of infos.pokemons">
       <app-card-pokemon [pokemon]="pokemon" class="card-pokemon"></app-card-pokemon>
     </ng-container>
   </div>
