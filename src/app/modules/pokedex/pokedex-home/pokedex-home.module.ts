@@ -15,9 +15,9 @@ import { SearchFieldModule } from 'src/app/shared/components/search-field/search
     CommonModule,
     PokedexHomeRoutingModule,
     CardPokemonModule,
-    // BtnViewMoreModule,
-    // BtnFilterFromTypeModule,
-    // SearchFieldModule
+    BtnViewMoreModule,
+    BtnFilterFromTypeModule,
+    //SearchFieldModule
   ]
 })
 export class PokedexHomeModule { }
