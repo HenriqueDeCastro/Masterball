@@ -4,7 +4,7 @@
   grid-template-columns: 1fr 1fr auto;
   grid-template-areas: "title title title"
                        "search search filter";
-  gap: 5px;
+  gap: 1rem 5px;
   align-items: center;
 
   &__title {
