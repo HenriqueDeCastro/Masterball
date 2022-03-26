@@ -29,6 +29,7 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
+              "src/assets/images/icons/filter.svg",
               "src/_redirects"
             ],
             "styles": [
@@ -97,6 +98,7 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.ico",
+              "src/assets/images/icons/filter.svg",
               "src/assets",
               "src/_redirects"
             ],
