@@ -1,3 +1,4 @@
+import { environment } from 'src/environments/environment';
 import { TypeService } from './../../../core/services/type/type.service';
 import { PokemonDetail } from 'src/app/shared/models/interfaces/pokemon';
 import { Observable, Subscription } from 'rxjs';
@@ -12,16 +13,18 @@ import { ResumeInfoPokeapi } from 'src/app/shared/models/interfaces/resume-info-
 })
 export class PokedexHomeComponent implements OnInit, OnDestroy {
 
-  pokemons$!: Observable<PokemonDetail[]>;
-  types$!: Observable<ResumeInfoPokeapi[]>;
+  pokemons$: Observable<PokemonDetail[]>;
+  types$: Observable<ResumeInfoPokeapi[]>;
   pokemonsGet$!: Subscription;
+  pokemonsCount: number;
 
-  constructor(private pokemonService: PokemonService, private typeService: TypeService) {}
-
-  ngOnInit(): void {
-     this.pokemons$ = this.pokemonService.returnPokemons();
-     this.types$ = this.typeService.returnTypes();
+  constructor(private pokemonService: PokemonService, private typeService: TypeService) {
+    this.pokemons$ = this.pokemonService.returnPokemons();
+    this.types$ = this.typeService.returnTypes();
+    this.pokemonsCount = environment.pokemons_count;
   }
+
+  ngOnInit(): void {}
 
   receivedClicked(click: boolean): void {
     if(click) {

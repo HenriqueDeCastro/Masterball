@@ -1,20 +1,22 @@
-<h1 class="notranslate">
-  <span>Pokédex</span>
-</h1>
-
 <ng-container *ngIf="{ pokemons: pokemons$ | async, types: types$ | async } as infos">
-
-  <div style="display: none;">
-    <ng-container *ngFor="let type of infos.types">
-      <span>{{type.name}}</span>
-    </ng-container>
+  <div class="title-container">
+    <h1 class="notranslate title-container__title">
+      <span>Pokédex</span>
+    </h1>
+    <app-search-field class="title-container__search"></app-search-field>
+    <app-btn-filter-from-type class="title-container__filter"></app-btn-filter-from-type>
   </div>
+
+  <p class="text-info">The Pokédex contains detailed stats for every creature from the Pokémon games</p>
 
   <div class="cards-list">
     <ng-container *ngFor="let pokemon of infos.pokemons">
       <app-card-pokemon [pokemon]="pokemon" class="card-pokemon"></app-card-pokemon>
     </ng-container>
   </div>
+
+  <ng-container *ngIf="infos.pokemons && (infos.pokemons?.length ?? 0) < pokemonsCount">
+    <app-btn-view-more (clicked)="receivedClicked($event)"></app-btn-view-more>
+  </ng-container>
 </ng-container>
 
-<app-btn-view-more (clicked)="receivedClicked($event)"></app-btn-view-more>

@@ -1,11 +1,31 @@
-h1 {
-  font-family: "Fredoka One";
+.title-container {
+
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  grid-template-areas: "title title title"
+                       "search search filter";
+  gap: 5px;
+  margin-bottom: 1rem;
+
+  &__title {
+    font-family: "Fredoka One";
+    grid-area: title;
+  }
+
+  &__search {
+    grid-area: search;
+  }
+
+  &__filter {
+    grid-area: filter;
+  }
 }
 
 .cards-list {
   display: grid;
   grid-column: 1;
   gap: 1.25rem;
+  margin-top: 1rem;
 }
 
 @media screen and (min-width: 700px) {
