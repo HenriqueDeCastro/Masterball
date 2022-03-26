@@ -4,9 +4,7 @@ import { SearchFieldComponent } from './search-field.component';
 
 @NgModule({
   declarations: [ SearchFieldComponent ],
-  imports: [
-    CommonModule
-  ],
+  imports: [ CommonModule ],
   exports: [ SearchFieldComponent ]
 })
 export class SearchFieldModule { }

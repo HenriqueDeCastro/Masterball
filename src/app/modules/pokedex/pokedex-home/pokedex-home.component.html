@@ -3,8 +3,8 @@
     <h1 class="notranslate title-container__title">
       <span>Pokédex</span>
     </h1>
-    <app-search-field class="title-container__search"></app-search-field>
-    <app-btn-filter-from-type class="title-container__filter"></app-btn-filter-from-type>
+    <!-- <app-search-field class="title-container__search"></app-search-field>
+    <app-btn-filter-from-type class="title-container__filter"></app-btn-filter-from-type> -->
   </div>
 
   <p class="text-info">The Pokédex contains detailed stats for every creature from the Pokémon games</p>
@@ -16,7 +16,7 @@
   </div>
 
   <ng-container *ngIf="infos.pokemons && (infos.pokemons?.length ?? 0) < pokemonsCount">
-    <app-btn-view-more (clicked)="receivedClicked($event)"></app-btn-view-more>
+    <!-- <app-btn-view-more (clicked)="receivedClicked($event)"></app-btn-view-more> -->
   </ng-container>
 </ng-container>
 
