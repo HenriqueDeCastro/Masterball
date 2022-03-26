@@ -5,8 +5,7 @@
   grid-template-areas: "title title title"
                        "search search filter";
   gap: 5px;
-  align-content: center;
-  margin-bottom: 1rem;
+  align-items: center;
 
   &__title {
     font-family: "Fredoka One";

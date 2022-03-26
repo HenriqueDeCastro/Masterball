@@ -4,9 +4,12 @@
   border: none;
   background-color: transparent;
   width: 4rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .filter {
-  height: 24px;
-  width: 24px;
+  width: 1.75rem;
 }
