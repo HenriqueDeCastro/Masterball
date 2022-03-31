@@ -10,7 +10,7 @@
       <p>The Pokédex contains detailed stats for every creature from the Pokémon games</p>
     </div>
 
-    <ng-container *ngIf="!infos.pokemons?.length; else notPokemons">
+    <ng-container *ngIf="!!infos.pokemons?.length; else notPokemons">
       <div class="cards-list">
         <ng-container *ngFor="let pokemon of infos.pokemons">
           <app-card-pokemon [pokemon]="pokemon" class="card-pokemon"></app-card-pokemon>
