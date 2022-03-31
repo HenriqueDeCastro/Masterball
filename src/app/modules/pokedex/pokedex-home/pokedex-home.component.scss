@@ -37,12 +37,16 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-self: center;
-  align-self: center;
+  padding: 1rem;
+  text-align: center;
 
   &__text {
-    font-size: 1rem;
+    font-size: 1.25rem;
     font-family: "Fredoka One";
+
+    &__pokemon {
+      color: var(--solid-yellow);
+    }
   }
 
   &__img {
