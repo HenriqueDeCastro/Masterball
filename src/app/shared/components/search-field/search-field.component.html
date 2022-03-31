@@ -1,1 +1,3 @@
-<input type="search" [placeholder]="'Search for a Pokémon'" class="search-field">
+<form [formGroup]="searchForm">
+  <input type="search" [placeholder]="placeholder" class="search-field" formControlName="search">
+</form>

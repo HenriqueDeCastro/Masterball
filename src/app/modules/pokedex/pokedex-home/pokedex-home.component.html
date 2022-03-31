@@ -1,22 +1,33 @@
 <ng-container *ngIf="{ pokemons: pokemons$ | async, types: types$ | async } as infos">
-  <div class="title-container">
-    <h1 class="notranslate title-container__title">Pokédex</h1>
-    <app-search-field class="title-container__search"></app-search-field>
-    <app-btn-filter-from-type class="title-container__filter"></app-btn-filter-from-type>
-  </div>
+  <div class="pokemon-home-container">
+    <div class="title-container">
+      <h1 class="notranslate title-container__title">Pokédex</h1>
+      <app-search-field class="title-container__search" placeholder="Search for a Pokémon" (search)="receiveSearch($event)"></app-search-field>
+      <app-btn-filter-from-type class="title-container__filter"></app-btn-filter-from-type>
+    </div>
 
-  <div class="text-info">
-    <p>The Pokédex contains detailed stats for every creature from the Pokémon games</p>
-  </div>
+    <div class="text-info">
+      <p>The Pokédex contains detailed stats for every creature from the Pokémon games</p>
+    </div>
 
-  <div class="cards-list">
-    <ng-container *ngFor="let pokemon of infos.pokemons">
-      <app-card-pokemon [pokemon]="pokemon" class="card-pokemon"></app-card-pokemon>
+    <ng-container *ngIf="!infos.pokemons?.length; else notPokemons">
+      <div class="cards-list">
+        <ng-container *ngFor="let pokemon of infos.pokemons">
+          <app-card-pokemon [pokemon]="pokemon" class="card-pokemon"></app-card-pokemon>
+        </ng-container>
+      </div>
+
+      <ng-container *ngIf="infos.pokemons && (infos.pokemons?.length ?? 0) < pokemonsCount">
+        <app-btn-view-more (clicked)="receivedClicked($event)"></app-btn-view-more>
+      </ng-container>
     </ng-container>
-  </div>
 
-  <ng-container *ngIf="infos.pokemons && (infos.pokemons?.length ?? 0) < pokemonsCount">
-    <app-btn-view-more (clicked)="receivedClicked($event)"></app-btn-view-more>
-  </ng-container>
+    <ng-template #notPokemons>
+      <div class="not-pokemon">
+        <span class="not-pokemon__text">Não foi encontrado nenhum Pokémon</span>
+        <img class="not-pokemon__img" src="assets/images/icons/not-found.svg">
+      </div>
+    </ng-template>
+  </div>
 </ng-container>
 

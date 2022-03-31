@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { debounceTime, distinctUntilChanged } from 'rxjs';
 
 @Component({
   selector: 'app-search-field',
@@ -7,9 +9,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchFieldComponent implements OnInit {
 
-  constructor() { }
+  searchForm!: FormGroup;
+  @Input() placeholder!: string;
+  @Output() search!: EventEmitter<string>;
+
+  constructor(private fb: FormBuilder) {
+    this.search = new EventEmitter();
+  }
 
   ngOnInit(): void {
+    this.searchForm = this.fb.group({
+      search: ['', Validators.required]
+    })
+
+    this.searchForm.get('search')?.valueChanges.pipe(
+      debounceTime(300),
+      distinctUntilChanged()
+    ).subscribe(value => this.search.emit(value));
   }
 
 }

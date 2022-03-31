@@ -33,14 +33,24 @@ export class PokemonService {
     );
   }
 
-  private insertPokemons(pokemons: PokemonDetail[]): void {
-    this.pokemonsSubject.next(this.pokemonsSubject.getValue().concat(pokemons));
+  getPokemonBySearch(search: string): Observable<PokemonDetail> {
+    return this.http.get<any>(`${this.url_api}/${search}`).pipe(
+      tap((pokemon: PokemonDetail) => this.insertPokemons([pokemon], true))
+    );
+  }
+
+  private insertPokemons(pokemons: PokemonDetail[], search?: boolean): void {
+    const pokemonsForSubject = search? pokemons : this.pokemonsSubject.getValue().concat(pokemons);
+    this.pokemonsSubject.next(pokemonsForSubject);
   }
 
   returnPokemons(): Observable<PokemonDetail[]> {
     return this.pokemonsSubject.asObservable();
   }
 
+  clearPokemons(): void {
+    this.pokemonsSubject.next([]);
+  }
 
   hasPokemons(): boolean {
     return this.pokemonsSubject?.value?.length > 0;

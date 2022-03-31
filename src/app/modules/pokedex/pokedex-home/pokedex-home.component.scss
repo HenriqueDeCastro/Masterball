@@ -1,5 +1,10 @@
-.title-container {
+.pokemon-home-container {
+  display: flex;
+  flex-direction: column;
+}
 
+
+.title-container {
   display: grid;
   grid-template-columns: 1fr 1fr auto;
   grid-template-areas: "title title title"
@@ -28,7 +33,31 @@
   margin-top: 1rem;
 }
 
+.not-pokemon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-self: center;
+  align-self: center;
+
+  &__text {
+    font-size: 1rem;
+    font-family: "Fredoka One";
+  }
+
+  &__img {
+    padding: 1rem;
+    width: 50%;
+  }
+}
+
 @media screen and (min-width: 700px) {
+  .title-container {
+    grid-template-columns: 1fr 1fr auto;
+    grid-template-areas: "title search filter";
+    margin-top: 0.75rem;
+  }
+
   .cards-list {
     display: grid;
     grid-column: 7;
