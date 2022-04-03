@@ -1,13 +1,18 @@
 <ng-container *ngIf="{ pokemons: pokemons$ | async, types: types$ | async } as infos">
   <div class="pokemon-home-container">
-    <div class="title-container">
-      <h1 class="notranslate title-container__title">Pokédex</h1>
-      <app-search-field class="title-container__search" placeholder="Search for a Pokémon" (search)="receiveSearch($event)"></app-search-field>
-      <app-btn-filter-from-type class="title-container__filter"></app-btn-filter-from-type>
-    </div>
 
-    <div class="text-info">
-      <p>The Pokédex contains detailed stats for every creature from the Pokémon games</p>
+    <div class="title-container">
+      <div class="title-container__title">
+        <h1 class="notranslate title-container__title__text">Pokédex</h1>
+        <span class="text-info text-info__desktop">{{textinfo}}</span>
+      </div>
+
+      <div class="title-container__filters">
+        <app-search-field class="title-container__filters__search" placeholder="Search for a Pokémon" (search)="receiveSearch($event)"></app-search-field>
+        <app-btn-filter-from-type class="title-container__filters__filter"></app-btn-filter-from-type>
+      </div>
+
+      <span class="text-info text-info__mobile">{{textinfo}}</span>
     </div>
 
     <ng-container *ngIf="!!infos.pokemons?.length; else notPokemons">
@@ -17,7 +22,7 @@
         </ng-container>
       </div>
 
-      <ng-container *ngIf="infos.pokemons && (infos.pokemons?.length ?? 0) < pokemonsCount">
+      <ng-container *ngIf="infos.pokemons && (infos.pokemons?.length ?? 0) < pokemonsCount && (infos.pokemons?.length ?? 0) > 1">
         <app-btn-view-more (clicked)="receivedClicked($event)"></app-btn-view-more>
       </ng-container>
     </ng-container>

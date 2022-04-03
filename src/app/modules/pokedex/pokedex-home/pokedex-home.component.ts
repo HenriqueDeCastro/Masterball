@@ -17,11 +17,13 @@ export class PokedexHomeComponent implements OnInit, OnDestroy {
   types$: Observable<ResumeInfoPokeapi[]>;
   pokemonsGet$!: Subscription;
   pokemonsCount: number;
+  textinfo: string;
 
   constructor(private pokemonService: PokemonService, private typeService: TypeService) {
     this.pokemons$ = this.pokemonService.returnPokemons();
     this.types$ = this.typeService.returnTypes();
     this.pokemonsCount = environment.pokemons_count;
+    this.textinfo = 'The Pokédex contains detailed stats for every creature from the Pokémon games';
   }
 
   ngOnInit(): void {}
@@ -33,15 +35,20 @@ export class PokedexHomeComponent implements OnInit, OnDestroy {
   }
 
   receiveSearch(value: string): void {
-    this.pokemonService.clearPokemons();
-    this.pokemonsGet$ = value?
+    this.unsubscribePokemons();
+    if(typeof(value) === "string")
+      this.pokemonsGet$ = value ?
       this.pokemonService.getPokemonBySearch(value).subscribe() :
-      this.pokemonService.getPokemons().subscribe();
+      this.pokemonService.getPokemons(true).subscribe();
   }
 
-  ngOnDestroy(): void {
+  unsubscribePokemons(): void {
     if(this.pokemonsGet$) {
       this.pokemonsGet$.unsubscribe();
     }
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribePokemons();
   }
 }

@@ -1,0 +1,28 @@
+.text-info {
+  font-weight: 700;
+  color: var(--dark-gray);
+  font-family: "Open Sans";
+
+  &__mobile {
+    font-size: 1rem;
+    margin: 1rem 0rem;
+  }
+
+  &__desktop {
+    font-size: 0.9rem;
+    margin: 0;
+    display: none;
+  }
+}
+
+@media screen and (min-width: 700px) {
+  .text-info {
+    &__mobile {
+      display: none;
+    }
+
+    &__desktop {
+      display: block;
+    }
+  }
+}

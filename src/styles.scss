@@ -4,16 +4,14 @@
 @import './assets/scss/material-icons.scss';
 @import './assets/scss/open-sans.scss';
 @import './assets/scss/root-variables.scss';
+@import './assets/scss/text-info.scss';
 
 html, body { height: 100%; margin: 0; overflow: hidden; }
 
-.text-info {
-  font-weight: 700;
-  color: var(--dark-gray);
-  font-size: 1rem;
-  margin: 1.25rem 0rem;
+.mat-h1, .mat-headline, .mat-typography h1 {
+  margin: 0;
 }
 
-.mat-h1, .mat-headline, .mat-typography h1 {
+.mat-body p, .mat-body-1 p, .mat-typography p {
   margin: 0;
 }
