@@ -18,6 +18,7 @@ export class PokedexHomeComponent implements OnInit, OnDestroy {
   pokemonsGet$!: Subscription;
   pokemonsCount: number;
   textinfo: string;
+  searchValue!: string;
 
   constructor(private pokemonService: PokemonService, private typeService: TypeService) {
     this.pokemons$ = this.pokemonService.returnPokemons();
@@ -35,6 +36,7 @@ export class PokedexHomeComponent implements OnInit, OnDestroy {
   }
 
   receiveSearch(value: string): void {
+    this.searchValue = value;
     this.unsubscribePokemons();
     if(typeof(value) === "string")
       this.pokemonsGet$ = value ?
