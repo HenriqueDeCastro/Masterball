@@ -46,7 +46,6 @@ export class PokemonService {
   }
 
   private insertPokemons(pokemons: PokemonDetail[], options?: { clear?:boolean, search?: boolean}): void {
-    alert('Insert')
     if(options?.clear)
     this.clearPokemons();
 

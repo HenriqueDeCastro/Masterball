@@ -25,7 +25,7 @@ export class SearchFieldComponent implements OnInit {
     this.searchForm.get('search')?.valueChanges.pipe(
       debounceTime(500),
       distinctUntilChanged())
-      .subscribe((value: string) => this.search.emit(value.toLowerCase()));
+      .subscribe((value: string) => this.search.emit(value.toString().toLowerCase()));
   }
 
 }
