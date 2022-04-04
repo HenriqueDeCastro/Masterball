@@ -36,11 +36,13 @@ export class PokedexHomeComponent implements OnInit, OnDestroy {
   }
 
   receiveSearch(value: string): void {
-    this.searchValue = value;
     this.unsubscribePokemons();
-    this.pokemonsGet$ = this.searchValue ?
-    this.pokemonService.getPokemonBySearch(this.searchValue).subscribe() :
-    this.pokemonService.getPokemons(true).subscribe();
+    if(value) {
+      this.searchValue = value;
+      this.pokemonService.getPokemonBySearch(this.searchValue).subscribe()
+    } else {
+      this.pokemonService.getPokemons(true).subscribe();
+    }
   }
 
   unsubscribePokemons(): void {
