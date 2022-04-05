@@ -38,7 +38,6 @@ export class PokemonService {
     return this.http.get<any>(`${this.url_api}/${search}`).pipe(
       tap((pokemon: PokemonDetail) => this.insertPokemons([pokemon], { clear: true, search: true})),
       catchError((error: any) => {
-        alert(error.message)
         this.clearPokemons();
         return of(error);
       })

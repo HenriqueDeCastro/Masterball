@@ -1,19 +1,20 @@
 .form {
   display: flex;
+  background-color: #eaeaeb;
+  color: var(--solid-gray);
+  border-radius: 30px;
 
   .search-field {
     border: none;
-    border-radius: 30px;
     padding: 0.75rem 0.75rem 0.75rem 3rem;
     font-size: 1rem;
     font-weight: 700;
     width: 100%;
-    color: var(--solid-gray);
 
     background-image: url('../../../../assets/images/icons/search.svg');
     background-repeat: no-repeat;
     background-position: 1rem;
-    background-color: #eaeaeb;
+    background-color: transparent;
     background-size: 20px;
     background-position-y: center;
 

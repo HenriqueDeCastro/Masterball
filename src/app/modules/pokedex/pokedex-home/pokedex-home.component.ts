@@ -3,7 +3,7 @@ import { TypeService } from './../../../core/services/type/type.service';
 import { PokemonDetail } from 'src/app/shared/models/interfaces/pokemon';
 import { Observable, Subscription } from 'rxjs';
 import { PokemonService } from 'src/app/core/services/pokemon/pokemon.service';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { ResumeInfoPokeapi } from 'src/app/shared/models/interfaces/resume-info-pokeapi';
 
 @Component({
@@ -11,7 +11,7 @@ import { ResumeInfoPokeapi } from 'src/app/shared/models/interfaces/resume-info-
   templateUrl: './pokedex-home.component.html',
   styleUrls: ['./pokedex-home.component.scss']
 })
-export class PokedexHomeComponent implements OnInit, OnDestroy {
+export class PokedexHomeComponent implements OnDestroy {
 
   pokemons$: Observable<PokemonDetail[]>;
   types$: Observable<ResumeInfoPokeapi[]>;
@@ -27,8 +27,6 @@ export class PokedexHomeComponent implements OnInit, OnDestroy {
     this.textinfo = 'The Pokédex contains detailed stats for every creature from the Pokémon games';
   }
 
-  ngOnInit(): void {}
-
   receivedClicked(click: boolean): void {
     if(click) {
       this.pokemonsGet$ = this.pokemonService.getPokemons().subscribe();
@@ -37,11 +35,12 @@ export class PokedexHomeComponent implements OnInit, OnDestroy {
 
   receiveSearch(value: string): void {
     this.unsubscribePokemons();
+
     if(value) {
       this.searchValue = value;
-      this.pokemonService.getPokemonBySearch(this.searchValue).subscribe()
+      this.pokemonsGet$ = this.pokemonService.getPokemonBySearch(this.searchValue).subscribe()
     } else {
-      this.pokemonService.getPokemons(true).subscribe();
+      this.pokemonsGet$ = this.pokemonService.getPokemons(true).subscribe();
     }
   }
 

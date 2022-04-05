@@ -28,4 +28,7 @@ export class SearchFieldComponent implements OnInit {
       .subscribe((value: string) => this.search.emit(value.toString().toLowerCase()));
   }
 
+  resetSearch(): void {
+    this.searchForm.setValue({search: ''});
+  }
 }

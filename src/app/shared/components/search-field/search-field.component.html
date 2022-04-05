@@ -1,3 +1,6 @@
 <form [formGroup]="searchForm" class="form">
   <input type="text" [placeholder]="placeholder" class="search-field" formControlName="search">
+  <button mat-icon-button aria-label="clear search" (click)="resetSearch()" *ngIf="searchForm.get('search')?.value">
+    <mat-icon>close</mat-icon>
+  </button>
 </form>
