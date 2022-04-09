@@ -45,4 +45,8 @@
       @include placeholder();
     }
   }
+
+  input::-webkit-input-placeholder {
+    @include placeholder();
+  }
 }
