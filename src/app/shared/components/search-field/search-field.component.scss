@@ -1,3 +1,9 @@
+@mixin placeholder() {
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--dark-gray);
+}
+
 .form {
   display: flex;
   background-color: var(--solid-gray);
@@ -24,9 +30,19 @@
     }
 
     &::placeholder {
-      font-weight: 700;
-      font-size: 1rem;
-      color: var(--dark-gray);
+      @include placeholder();
+    }
+
+    &::-webkit-input-placeholder {
+      @include placeholder();
+    }
+
+    &::-moz-placeholder {
+      @include placeholder();
+    }
+
+    &::-ms-placeholder {
+      @include placeholder();
     }
   }
 }
