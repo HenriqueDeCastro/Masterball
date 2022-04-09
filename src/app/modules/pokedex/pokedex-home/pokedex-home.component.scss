@@ -9,7 +9,7 @@
     &__title {
       &__text {
         font-family: "Fredoka One";
-        font-size: 1.25rem;
+        font-size: 1.4rem;
       }
     }
 
@@ -26,6 +26,16 @@
       &__filter {
         justify-self: flex-end;
       }
+    }
+  }
+
+  .filter-container {
+    overflow:hidden;
+    max-height: 0px;
+
+    &__active {
+      max-height: 500px;
+      transition: max-height 0.5s ease-in;
     }
   }
 

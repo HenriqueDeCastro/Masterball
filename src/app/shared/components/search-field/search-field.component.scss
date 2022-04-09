@@ -1,7 +1,7 @@
 .form {
   display: flex;
-  background-color: #eaeaeb;
-  color: var(--solid-gray);
+  background-color: var(--solid-gray);
+  color: var(--dark-gray);
   border-radius: 30px;
 
   .search-field {
@@ -10,6 +10,7 @@
     font-size: 1rem;
     font-weight: 700;
     width: 100%;
+    color: var(--dark-gray);
 
     background-image: url('../../../../assets/images/icons/search.svg');
     background-repeat: no-repeat;
@@ -25,7 +26,7 @@
     &::placeholder {
       font-weight: 700;
       font-size: 1rem;
-      color: var(--solid-gray);
+      color: var(--dark-gray);
     }
   }
 }

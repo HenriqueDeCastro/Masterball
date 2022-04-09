@@ -2,10 +2,10 @@
   <button mat-icon-button class="toolbar__menu" aria-label="Menu" (click)="eventMenu()">
     <mat-icon>menu</mat-icon>
   </button>
-  <div routerLink="/home">
+  <div>
     <h1 class="toolbar__title notranslate">
       <img src="assets/images/icons/pokeball.svg" alt="Pokeball" class="toolbar__title__image">
-      <div class="toolbar__title__text">
+      <div class="toolbar__title__text" routerLink="/home">
         <span class="toolbar__title__text__the">the </span>
         <span class="toolbar__title__text__master">MasterBall</span>
       </div>

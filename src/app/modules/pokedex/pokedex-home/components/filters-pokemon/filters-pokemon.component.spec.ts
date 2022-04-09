@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BtnFilterFromTypeComponent } from './btn-filter-from-type.component';
+import { FiltersPokemonComponent } from './filters-pokemon.component';
 
-describe('BtnFilterFromTypeComponent', () => {
-  let component: BtnFilterFromTypeComponent;
-  let fixture: ComponentFixture<BtnFilterFromTypeComponent>;
+describe('FiltersPokemonComponent', () => {
+  let component: FiltersPokemonComponent;
+  let fixture: ComponentFixture<FiltersPokemonComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BtnFilterFromTypeComponent ]
+      declarations: [ FiltersPokemonComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BtnFilterFromTypeComponent);
+    fixture = TestBed.createComponent(FiltersPokemonComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

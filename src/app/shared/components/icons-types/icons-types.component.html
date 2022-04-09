@@ -1,6 +1,6 @@
-<div class="icons-container">
+<div class="icons-types-container">
   <ng-container *ngFor="let pokemonType of pokemonsTypes">
-    <div class="icons-container__icon type-icon__{{pokemonType.type.name}}">
+    <div class="icon-type type-icon__{{pokemonType.type.name}}">
       <img src="assets/images/icons-types/{{pokemonType.type.name}}.svg" [alt]="pokemonType.type.name">
     </div>
   </ng-container>

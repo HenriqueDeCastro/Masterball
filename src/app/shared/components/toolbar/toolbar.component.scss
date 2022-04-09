@@ -10,8 +10,6 @@
     align-items: center;
     justify-content: center;
     font-family: "Fredoka One";
-    -webkit-tap-highlight-color: transparent;
-    cursor: pointer;
 
     &__image {
       width: 10rem;
@@ -22,6 +20,8 @@
 
     &__text {
       position: absolute;
+      -webkit-tap-highlight-color: transparent;
+      cursor: pointer;
 
       &__the {
         font-size: 0.75rem;

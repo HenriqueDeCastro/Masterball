@@ -9,10 +9,14 @@
 
       <div class="title-container__filters">
         <app-search-field class="title-container__filters__search" placeholder="Search for a Pokémon" (search)="receiveSearch($event)"></app-search-field>
-        <app-btn-filter-from-type class="title-container__filters__filter"></app-btn-filter-from-type>
+        <app-btn-filter class="title-container__filters__filter" (clicked)="showFilter = !showFilter"></app-btn-filter>
       </div>
 
       <span class="text-info text-info__mobile">{{textinfo}}</span>
+    </div>
+
+    <div [ngClass]="showFilter? 'filter-container filter-container__active' : 'filter-container' ">
+      <app-filters-pokemon [types]="infos.types!"></app-filters-pokemon>
     </div>
 
     <ng-container *ngIf="!!infos.pokemons?.length; else notPokemons">
@@ -29,7 +33,7 @@
 
     <ng-template #notPokemons>
       <div class="not-pokemon">
-        <img class="not-pokemon__img" src="assets/images/icons/not-found.svg">
+        <img class="not-pokemon__img" src="assets/images/icons/psyduck-not-found.svg">
         <p class="not-pokemon__text">No Pokemon <span class="not-pokemon__text__pokemon">"{{searchValue}}"</span> found!</p>
       </div>
     </ng-template>

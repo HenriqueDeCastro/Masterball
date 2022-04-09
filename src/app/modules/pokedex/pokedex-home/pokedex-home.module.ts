@@ -1,3 +1,4 @@
+import { MatExpansionModule } from '@angular/material/expansion';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -6,8 +7,9 @@ import { PokedexHomeComponent } from './pokedex-home.component';
 
 import { CardPokemonModule } from './components/card-pokemon/card-pokemon.module';
 import { BtnViewMoreModule } from 'src/app/shared/components/btn-view-more/btn-view-more.module';
-import { BtnFilterFromTypeModule } from './components/btn-filter-from-type/btn-filter-from-type.module';
 import { SearchFieldModule } from 'src/app/shared/components/search-field/search-field.module';
+import { BtnFilterModule } from 'src/app/shared/components/btn-filter/btn-filter.module';
+import { FiltersPokemonModule } from './components/filters-pokemon/filters-pokemon.module';
 
 @NgModule({
   declarations: [ PokedexHomeComponent ],
@@ -16,8 +18,10 @@ import { SearchFieldModule } from 'src/app/shared/components/search-field/search
     PokedexHomeRoutingModule,
     CardPokemonModule,
     BtnViewMoreModule,
-    BtnFilterFromTypeModule,
-    SearchFieldModule
+    BtnFilterModule,
+    SearchFieldModule,
+    FiltersPokemonModule,
+    MatExpansionModule
   ]
 })
 export class PokedexHomeModule { }

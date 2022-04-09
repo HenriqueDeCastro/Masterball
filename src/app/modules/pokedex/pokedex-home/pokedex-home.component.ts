@@ -19,6 +19,7 @@ export class PokedexHomeComponent implements OnDestroy {
   pokemonsCount: number;
   textinfo: string;
   searchValue!: string;
+  showFilter!: boolean;
 
   constructor(private pokemonService: PokemonService, private typeService: TypeService) {
     this.pokemons$ = this.pokemonService.returnPokemons();

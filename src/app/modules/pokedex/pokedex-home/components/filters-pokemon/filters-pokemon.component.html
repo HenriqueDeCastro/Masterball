@@ -1,0 +1,13 @@
+<div class="icons-filter-container">
+  <ng-container *ngFor="let type of types">
+    <ng-container *ngIf="type.name !== 'unknown' && type.name !== 'shadow'">
+      <div
+        class="type-tag-filter type-icon__{{type.name}}"
+        [ngClass]="typeSelected !== type.name? 'type-tag-filter__inactive' : ''"
+        (click)="selectFilter(type.name)">
+        <img src="assets/images/icons-types/{{type.name}}.svg" [alt]="type.name">
+        <span>{{type.name | titlecase}}</span>
+      </div>
+    </ng-container>
+  </ng-container>
+</div>
