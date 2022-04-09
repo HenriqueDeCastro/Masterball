@@ -19,6 +19,7 @@ main {
   position: fixed;
   left: -100vw;
   transition: .50s;
+  z-index: 1;
 
   &__active {
     left: 0;

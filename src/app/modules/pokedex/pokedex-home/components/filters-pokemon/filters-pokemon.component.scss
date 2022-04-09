@@ -1,16 +1,22 @@
 .icons-filter-container {
   display: flex;
   overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
   padding: 0.5rem 0;
   gap: 5px;
+}
 
+.icons-filter-container::-webkit-scrollbar {
+  width: 0;
+  height: 0;
 }
 
 .type-tag-filter {
   display: grid;
   grid-column: 2;
   grid-template-columns: auto 1fr;
-  gap: 5px;
+  gap: 10px;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
 
@@ -33,7 +39,6 @@
     color: var(--dark-gray);
 
     img {
-      -webkit-filter: invert(0.35);
       filter: invert(0.35);
     }
 
