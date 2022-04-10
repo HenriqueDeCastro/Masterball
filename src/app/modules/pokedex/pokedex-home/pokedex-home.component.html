@@ -16,7 +16,7 @@
     </div>
 
     <div [ngClass]="showFilter? 'filter-container filter-container__active' : 'filter-container' ">
-      <app-filters-pokemon [types]="infos.types!"></app-filters-pokemon>
+      <app-filters-pokemon [types]="infos.types!" (selected)="receiveFilter($event)"></app-filters-pokemon>
     </div>
 
     <ng-container *ngIf="!!infos.pokemons?.length; else notPokemons">

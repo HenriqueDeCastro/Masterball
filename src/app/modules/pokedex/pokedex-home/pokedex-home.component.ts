@@ -5,6 +5,7 @@ import { Observable, Subscription } from 'rxjs';
 import { PokemonService } from 'src/app/core/services/pokemon/pokemon.service';
 import { Component, OnDestroy } from '@angular/core';
 import { ResumeInfoPokeapi } from 'src/app/shared/models/interfaces/resume-info-pokeapi';
+import { EventSelectFilter } from 'src/app/shared/models/interfaces/event';
 
 @Component({
   selector: 'app-pokedex-home',
@@ -40,6 +41,14 @@ export class PokedexHomeComponent implements OnDestroy {
     if(value) {
       this.searchValue = value;
       this.pokemonsGet$ = this.pokemonService.getPokemonBySearch(this.searchValue).subscribe()
+    } else {
+      this.pokemonsGet$ = this.pokemonService.getPokemons(true).subscribe();
+    }
+  }
+
+  receiveFilter(selected: EventSelectFilter): void {
+    if(selected.checked) {
+      this.pokemonsGet$ = this.pokemonService.getPokemonsByType(selected.value, true).subscribe();
     } else {
       this.pokemonsGet$ = this.pokemonService.getPokemons(true).subscribe();
     }

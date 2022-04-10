@@ -1,4 +1,5 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { EventSelectFilterEnum } from 'src/app/shared/models/enum';
 import { EventSelectFilter } from 'src/app/shared/models/interfaces/event';
 import { ResumeInfoPokeapi } from 'src/app/shared/models/interfaces/resume-info-pokeapi';
 
@@ -11,22 +12,24 @@ export class FiltersPokemonComponent implements OnInit {
 
   @Input() types!: ResumeInfoPokeapi[];
   @Input() typeSelected!: string | null;
-  @Output() clicked: EventEmitter<EventSelectFilter>;
+  @Output() selected: EventEmitter<EventSelectFilter>;
+  eventSelectFilterEnum: typeof EventSelectFilterEnum;
 
   constructor() {
-    this.clicked = new EventEmitter();
+    this.selected = new EventEmitter();
+    this.eventSelectFilterEnum = EventSelectFilterEnum;
   }
 
   ngOnInit(): void {}
 
-  selectFilter(type: string): void {
-    const checked = this.typeSelected !== type;
-    this.typeSelected = checked? type : null;
+  selectFilter(typeFilter:string, typePokemon: string): void {
+    const checked = this.typeSelected !== typePokemon;
+    this.typeSelected = checked? typePokemon : null;
 
-    this.clicked.emit({
+    this.selected.emit({
       checked: checked,
-      type: '',
-      value: type
+      type: typeFilter,
+      value: typePokemon
     });
   }
 }
