@@ -16,18 +16,22 @@
     </div>
 
     <div [ngClass]="showFilter? 'filter-container filter-container__active' : 'filter-container' ">
-      <app-filters-pokemon [types]="infos.types!" (selected)="receiveFilter($event)"></app-filters-pokemon>
+      <app-filters-pokemon [types]="infos.types!" [typeSelected]="selectFilter" (selected)="receiveFilter($event)"></app-filters-pokemon>
     </div>
 
     <ng-container *ngIf="!!infos.pokemons?.length; else notPokemons">
       <div class="cards-list">
         <ng-container *ngFor="let pokemon of infos.pokemons">
-          <app-card-pokemon [pokemon]="pokemon" class="card-pokemon"></app-card-pokemon>
+          <ng-container *ngIf="pokemon">
+            <app-card-pokemon [pokemon]="pokemon" class="card-pokemon"></app-card-pokemon>
+          </ng-container>
         </ng-container>
       </div>
 
-      <ng-container *ngIf="infos.pokemons && (infos.pokemons?.length ?? 0) < pokemonsCount && (infos.pokemons?.length ?? 0) > 1">
-        <app-btn-view-more (clicked)="receivedClicked($event)"></app-btn-view-more>
+      <ng-container *ngIf="nextPage$ | async as nextPage">
+        <ng-container *ngIf="nextPage;">
+          <app-btn-view-more (clicked)="receivedClicked($event)"></app-btn-view-more>
+        </ng-container>
       </ng-container>
     </ng-container>
 

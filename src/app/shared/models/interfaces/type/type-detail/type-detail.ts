@@ -1,5 +1,6 @@
 import { ResumeInfoPokeapi } from "../../resume-info-pokeapi";
 import { DamageRelations } from "./damage-relations";
+import { PokemonWithSlot } from "./pokemon-with-slot";
 
 export interface TypeDetail {
   damage_relations: DamageRelations;
@@ -11,5 +12,5 @@ export interface TypeDetail {
   name: string;
   names: { language:ResumeInfoPokeapi, name: string }[];
   past_damage_relations: { damage_relations: DamageRelations, generation: ResumeInfoPokeapi };
-  pokemon: { pokemon: ResumeInfoPokeapi, slot: number }[];
+  pokemon: PokemonWithSlot[];
 }
