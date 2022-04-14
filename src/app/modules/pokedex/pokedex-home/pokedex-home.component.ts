@@ -1,9 +1,8 @@
-import { environment } from 'src/environments/environment';
 import { TypeService } from './../../../core/services/type/type.service';
 import { PokemonDetail } from 'src/app/shared/models/interfaces/pokemon';
 import { Observable, Subscription } from 'rxjs';
 import { PokemonService } from 'src/app/core/services/pokemon/pokemon.service';
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ResumeInfoPokeapi } from 'src/app/shared/models/interfaces/resume-info-pokeapi';
 import { EventSelectFilter } from 'src/app/shared/models/interfaces/event';
 
@@ -12,11 +11,11 @@ import { EventSelectFilter } from 'src/app/shared/models/interfaces/event';
   templateUrl: './pokedex-home.component.html',
   styleUrls: ['./pokedex-home.component.scss']
 })
-export class PokedexHomeComponent implements OnDestroy {
+export class PokedexHomeComponent implements OnInit, OnDestroy {
 
-  pokemons$: Observable<PokemonDetail[]>;
-  nextPage$: Observable<boolean>;
-  types$: Observable<ResumeInfoPokeapi[]>;
+  pokemons$!: Observable<PokemonDetail[]>;
+  nextPage$!: Observable<boolean>;
+  types$!: Observable<ResumeInfoPokeapi[]>;
 
   textinfo: string;
   searchValue!: string | null;
@@ -27,11 +26,16 @@ export class PokedexHomeComponent implements OnDestroy {
   private currentPage: number;
 
   constructor(private pokemonService: PokemonService, private typeService: TypeService) {
+    this.textinfo = 'The Pokédex contains detailed stats for every creature from the Pokémon games';
+    this.currentPage = 1;
+  }
+
+
+  ngOnInit(): void {
     this.pokemons$ = this.pokemonService.returnPokemons();
     this.nextPage$ = this.pokemonService.returnNextPagePokemon();
     this.types$ = this.typeService.returnTypes();
-    this.textinfo = 'The Pokédex contains detailed stats for every creature from the Pokémon games';
-    this.currentPage = 0;
+    this.pokemonsGet$ = this.pokemonService.getAllPokemons({ currentPage: this.currentPage }).subscribe();
   }
 
   receivedClicked(click: boolean): void {
@@ -39,7 +43,7 @@ export class PokedexHomeComponent implements OnDestroy {
       if(this.selectFilter) {
         this.pokemonsGet$ = this.pokemonService.getPokemonsByType(this.selectFilter!, { currentPage:this.currentPage++ }).subscribe();
       } else {
-        this.pokemonsGet$ = this.pokemonService.getPokemons().subscribe();
+        this.pokemonsGet$ = this.pokemonService.getAllPokemons({ currentPage: this.currentPage++ }).subscribe();
       }
     }
   }
@@ -52,7 +56,7 @@ export class PokedexHomeComponent implements OnDestroy {
       this.searchValue = value;
       this.pokemonsGet$ = this.pokemonService.getPokemonBySearch(this.searchValue).subscribe()
     } else {
-      this.pokemonsGet$ = this.pokemonService.getPokemons(true).subscribe();
+      this.pokemonsGet$ = this.pokemonService.getAllPokemons({ currentPage: this.currentPage++, clearSubject: true }).subscribe();
     }
   }
 
@@ -62,9 +66,9 @@ export class PokedexHomeComponent implements OnDestroy {
 
     if(selected.checked) {
       this.selectFilter = selected.value;
-      this.pokemonsGet$ = this.pokemonService.getPokemonsByType(this.selectFilter!, { currentPage:this.currentPage++, clearSubject: true }).subscribe();
+      this.pokemonsGet$ = this.pokemonService.getPokemonsByType(this.selectFilter!, { currentPage: this.currentPage++, clearSubject: true }).subscribe();
     } else {
-      this.pokemonsGet$ = this.pokemonService.getPokemons(true).subscribe();
+      this.pokemonsGet$ = this.pokemonService.getAllPokemons({ currentPage: this.currentPage++, clearSubject: true }).subscribe();
     }
   }
 
@@ -82,5 +86,6 @@ export class PokedexHomeComponent implements OnDestroy {
 
   ngOnDestroy(): void {
     this.unsubscribePokemons();
+    this.pokemonService.clearPokemons();
   }
 }

@@ -1,12 +1,14 @@
 import { environment } from './../../../../environments/environment';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, forkJoin, mergeMap, Observable, tap, of, catchError } from 'rxjs';
 
-import { PokemonDetail, PokemonGeneral } from 'src/app/shared/models/interfaces/pokemon';
+import { PokemonDetail } from 'src/app/shared/models/interfaces/pokemon';
 import { ResumeInfoPokeapi } from 'src/app/shared/models/interfaces/resume-info-pokeapi';
 import { TypeDetail } from './../../../shared/models/interfaces/type/type-detail/type-detail';
 import { PokemonWithSlot } from 'src/app/shared/models/interfaces/type';
+import { EventPaginationData } from 'src/app/shared/models/interfaces/event';
+import { PokedexGeneral, PokedexPokemon } from 'src/app/shared/models/interfaces/pokedex';
 
 const URL_POKEAPI = environment.url_pokeapi;
 
@@ -16,31 +18,23 @@ const URL_POKEAPI = environment.url_pokeapi;
 export class PokemonService {
 
   private url_api_pokemon = `${URL_POKEAPI}/pokemon`;
+  private url_api_pokedex = `${URL_POKEAPI}/pokedex`;
   private url_api_type = `${URL_POKEAPI}/type`;
   private pokemonsSubject = new BehaviorSubject<PokemonDetail[]>([]);
   private nextPageSubject = new BehaviorSubject<boolean>(false);
 
   constructor(private http: HttpClient) {}
 
-  getPokemons(clearSubject?: boolean): Observable<PokemonDetail[]> {
-    let params = new HttpParams();
-    params = params.set('limit', environment.pokemons_pagination);
-    params = params.set('offset', clearSubject? 0 : this.pokemonsSubject?.value?.length);
+  getAllPokemons(options: { currentPage: number, clearSubject?: boolean, }): Observable<PokemonDetail[]> {
+    return this.http.get<any>(`${this.url_api_pokedex}/1`).pipe(
+      mergeMap((generalInfo: PokedexGeneral): Observable<any[]> => {
 
-    return this.http.get<any>(this.url_api_pokemon, { params }).pipe(
-      mergeMap((generalInfo: PokemonGeneral): Observable<any[]> => {
-        return forkJoin(generalInfo?.results.map((pokemon: ResumeInfoPokeapi, index: number) => {
-            const currentPokemons = this.pokemonsSubject.value.length + index;
-            if(currentPokemons < environment.pokemons_count) {
-              this.nextPageSubject.next(true);
-              return this.http.get<PokemonDetail>(`${pokemon.url}`);
-            } else {
-              this.nextPageSubject.next(false);
-              return of(null);
-            }
-        }))
+        const pokemonsPage = this.pagination(generalInfo?.pokemon_entries, options?.currentPage!, environment.pokemons_pagination);
+        this.nextPageSubject.next(pokemonsPage.nextPage);
+
+        return forkJoin(pokemonsPage?.value?.map((pokemon: PokedexPokemon) => this.http.get<PokemonDetail>(`${this.url_api_pokemon}/${pokemon?.entry_number}`)))
       }),
-      tap((pokemons: PokemonDetail[]) => this.insertPokemons(pokemons, { clear: clearSubject}))
+      tap((pokemons: PokemonDetail[]) => this.insertPokemons(pokemons, { clear: options?.clearSubject}))
     );
   }
 
@@ -60,8 +54,15 @@ export class PokemonService {
   getPokemonsByType(type: string, options?:{ currentPage: number, clearSubject?: boolean }): Observable<PokemonDetail[]> {
     return this.http.get<any>(`${this.url_api_type}/${type}`).pipe(
       mergeMap((typeDetail: TypeDetail): Observable<any[]> => {
-        const pokemonsPage = this.paginationForType(typeDetail?.pokemon, options?.currentPage!, environment.pokemons_pagination);
-        return forkJoin(pokemonsPage.map((pokemon: { pokemon: ResumeInfoPokeapi, slot: number }) => this.http.get<PokemonDetail>(`${pokemon?.pokemon?.url}`)));
+
+        const pokemonsFilterBySlot = typeDetail?.pokemon?.filter((pokemon: PokemonWithSlot) => {
+          const pokemonId = pokemon?.pokemon?.url.match('([^/]+)/?$')![1];
+          return pokemon?.slot === 1 && Number(pokemonId) <= environment.pokemons_count;
+        });
+        const pokemonsPage = this.pagination(pokemonsFilterBySlot, options?.currentPage!, environment.pokemons_pagination);
+        this.nextPageSubject.next(pokemonsPage.nextPage);
+
+        return forkJoin(pokemonsPage?.value.map((pokemon: PokemonWithSlot) => this.http.get<PokemonDetail>(`${pokemon?.pokemon?.url}`)));
       }),
       tap((pokemons: PokemonDetail[]) => this.insertPokemons(pokemons, { clear: options?.clearSubject }))
     );
@@ -76,13 +77,14 @@ export class PokemonService {
 
   }
 
-  private paginationForType(pokemons: PokemonWithSlot[], currentPage: number, pageSize: number): PokemonWithSlot[]  {
-    const pokemonsFilterBySlot = pokemons?.filter((pokemon: { pokemon: ResumeInfoPokeapi, slot: number }) => {
-        const pokemonId = pokemon?.pokemon?.url.match('([^/]+)/?$')![1];
-        return pokemon?.slot === 1 && Number(pokemonId) <= environment.pokemons_count;
-    });
-    const pokemonsPagination = pokemonsFilterBySlot.slice(currentPage * pageSize, currentPage * pageSize + pageSize);
-    return pokemonsPagination;
+  private pagination(array: any[], currentPage: number, pageSize: number): EventPaginationData  {
+    const pagination = array.slice(currentPage * pageSize, currentPage * pageSize + pageSize);
+    const nextPage = (Math.ceil(array.length/pageSize) - 1) > currentPage;
+
+    return {
+      value: pagination,
+      nextPage: nextPage
+    };
   }
 
   clearPokemons(): void {

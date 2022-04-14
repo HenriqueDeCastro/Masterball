@@ -108,13 +108,3 @@
     }
   }
 }
-
-@media screen and (min-width: 1700px) {
-  .pokemon-home-container {
-    .cards-list {
-      display: grid;
-      grid-column: 4;
-      grid-template-columns: repeat(4, 1fr);
-    }
-  }
-}
