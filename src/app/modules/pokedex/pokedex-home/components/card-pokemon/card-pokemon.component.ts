@@ -9,9 +9,4 @@ import { Component, Input } from '@angular/core';
 export class CardPokemonComponent {
 
   @Input() pokemon!: PokemonDetail;
-  linkImg: string;
-
-  constructor() {
-    this.linkImg = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/'
-  }
 }

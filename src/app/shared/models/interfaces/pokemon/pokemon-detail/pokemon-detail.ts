@@ -1,4 +1,4 @@
-import { ResumeInfoPokeapi } from "../../resume-info-pokeapi";
+import { ResumeInfoPokeapi } from "../../pokeapi";
 import { Sprites } from "./sprites";
 import { Types } from "./types";
 import { VersionGroupDetails } from "./version-group-details";

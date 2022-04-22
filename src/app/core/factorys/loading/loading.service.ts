@@ -6,10 +6,8 @@ import { BehaviorSubject, Observable } from 'rxjs';
 })
 export class LoadingService {
 
-  loadingSub: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  loadingMap: Map<string, boolean> = new Map<string, boolean>();
-
-  constructor() { }
+  private loadingSub: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  private loadingMap: Map<string, boolean> = new Map<string, boolean>();
 
   getLoading(): Observable<boolean> {
     return this.loadingSub.asObservable();
@@ -19,6 +17,7 @@ export class LoadingService {
     if (!url) {
       throw new Error('A URL de solicitação deve ser fornecido para a função LoadingService.setLoading');
     }
+
     if (loading === true) {
       this.loadingMap.set(url, loading);
       this.loadingSub.next(true);

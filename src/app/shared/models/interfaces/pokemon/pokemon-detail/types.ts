@@ -1,4 +1,4 @@
-import { ResumeInfoPokeapi } from "../../resume-info-pokeapi";
+import { ResumeInfoPokeapi } from "../../pokeapi";
 
 export interface Types {
   slot:number,

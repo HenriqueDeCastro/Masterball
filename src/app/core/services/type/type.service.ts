@@ -1,9 +1,9 @@
-import { ResumeInfoPokeapi } from './../../../shared/models/interfaces/resume-info-pokeapi/resume-info-pokeapi';
+import { ResumeInfoPokeapi } from '../../../shared/models/interfaces/pokeapi/resume-info-pokeapi';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, tap, map } from 'rxjs';
-import { PokemonGeneral } from 'src/app/shared/models/interfaces/pokemon';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { GeneralPokeapi } from 'src/app/shared/models/interfaces/pokeapi';
 
 const URL_POKEAPI = environment.url_pokeapi;
 
@@ -12,19 +12,23 @@ const URL_POKEAPI = environment.url_pokeapi;
 })
 export class TypeService {
 
-  url_api = `${URL_POKEAPI}/type`;
-  typesSubject = new BehaviorSubject<ResumeInfoPokeapi[]>([]);
+  private url_api = `${URL_POKEAPI}/type`;
+  private typesSubject = new BehaviorSubject<ResumeInfoPokeapi[]>([]);
 
   constructor(private http: HttpClient) { }
 
-  getTypes(): Observable<PokemonGeneral> {
-    return this.http.get<PokemonGeneral>(this.url_api).pipe(
-      tap((response: PokemonGeneral) => this.insertTypes(response.results))
+  getAllTypes(): Observable<GeneralPokeapi> {
+    return this.http.get<GeneralPokeapi>(this.url_api).pipe(
+      tap((response: GeneralPokeapi) => this.insertTypes(response.results))
     );
   }
 
   private insertTypes(types: ResumeInfoPokeapi[]): void {
     this.typesSubject.next(types);
+  }
+
+  hasTypes(): boolean {
+    return this.typesSubject?.value?.length > 0;
   }
 
   returnTypes(): Observable<ResumeInfoPokeapi[]> {

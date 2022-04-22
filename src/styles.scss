@@ -3,15 +3,13 @@
 @import './assets/scss/fredoka-one.scss';
 @import './assets/scss/material-icons.scss';
 @import './assets/scss/open-sans.scss';
+@import './assets/scss/reset-material-typography.scss';
 @import './assets/scss/root-variables.scss';
 @import './assets/scss/text-info.scss';
 
 html, body { height: 100%; margin: 0; overflow: hidden; }
 
-.mat-h1, .mat-headline, .mat-typography h1 {
-  margin: 0;
-}
-
-.mat-body p, .mat-body-1 p, .mat-typography p {
-  margin: 0;
+.disable {
+  pointer-events: none;
+  opacity: 0.5;
 }

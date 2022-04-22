@@ -3,57 +3,77 @@
   overflow-x: auto;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  padding: 0.5rem 0;
   gap: 5px;
 
-  &:first-child {
-    padding-left: 1rem;
+  &__types {
+    padding: 0rem 1rem 0.5rem;
   }
 
-  &:last-child {
-    padding-right: 1rem;
+  &__regions {
+    padding: 0.5rem 1rem 0.5rem;
   }
+
+  .tag-filter-type, .tag-filter-region {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+
+    padding: 0.5rem 0.75rem;
+    font-weight: 700;
+    border-radius: 20px;
+    margin: 0.5rem 0px;
+    color: var(--white);
+    height: 1.5rem;
+
+    img {
+      width: 1.5rem;
+      margin-right: 5px;
+    }
+
+    &__inactive {
+      background-color: var(--solid-gray);
+      color: var(--dark-gray);
+
+      img {
+        filter: invert(0.35);
+      }
+
+      &:hover {
+        background:var(--transparent-black);
+      }
+    }
+
+    &__name {
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+  }
+
+  .tag-filter-type {
+    width: 90px;
+  }
+
+  .tag-filter-region {
+    //width: 105px;
+
+    &__active-region {
+      background-color: var(--light-blue);
+      color: var(--black);
+    }
+  }
+}
+
+.mat-divider {
+  margin: 0px 1rem;
+  border-top-color: var(--solid-gray);
 }
 
 .icons-filter-container::-webkit-scrollbar {
   width: 0;
   height: 0;
-}
-
-.type-tag-filter {
-  display: grid;
-  grid-column: 2;
-  grid-template-columns: auto 1fr;
-  gap: 10px;
-  cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
-
-  width: 90px;
-  padding: 0.5rem 0.75rem;
-  font-weight: 700;
-  border-radius: 20px;
-  margin-bottom: 0.75rem;
-  justify-content: center;
-  align-items: center;
-  white-space: nowrap;
-  color: var(--white);
-
-  img {
-    width: 1.5rem;
-  }
-
-  &__inactive {
-    background-color: var(--solid-gray);
-    color: var(--dark-gray);
-
-    img {
-      filter: invert(0.35);
-    }
-
-    &:hover {
-      background:var(--transparent-black);
-    }
-  }
 }
 
 @media screen and (min-width: 950px) {

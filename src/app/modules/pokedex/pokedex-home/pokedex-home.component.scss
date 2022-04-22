@@ -34,9 +34,9 @@
     max-height: 0px;
 
     &__active {
-      max-height: 500px;
+      max-height: 1000px;
       transition: max-height 0.5s ease-in;
-      margin: 0px -0.9rem;
+      margin: 0.5rem -0.9rem;
     }
   }
 

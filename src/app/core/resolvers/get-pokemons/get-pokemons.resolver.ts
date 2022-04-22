@@ -19,6 +19,7 @@ export class GetPokemonsResolver implements Resolve<PokemonDetail[] | null> {
     if(this.pokemonService.hasPokemons()) {
       return null;
     }
-    return this.pokemonService.getAllPokemons({ currentPage: 0 });
+
+    return this.pokemonService.getPokemonsByPokedex();
   }
 }

@@ -1,10 +1,10 @@
 <ng-container *ngIf="pokemon">
   <div class="card type-page type-page__{{pokemon.types[0].type.name}}">
     <div class="card-image">
-      <img src="{{linkImg}}{{pokemon.id}}.png" alt="{{pokemon.name}}" class="card__img">
+      <img src="{{ pokemon.sprites.other['official-artwork'].front_default }}" alt="{{pokemon.name}}" class="card__img">
     </div>
     <div class="card-title">
-      <span class="card__title notranslate">{{pokemon.name | titlecase}}</span>
+      <span class="card__title notranslate">{{pokemon.name | pokemonName }}</span>
     </div>
     <div class="card-types card__types">
         <app-icons-types [pokemonsTypes]="pokemon.types"></app-icons-types>

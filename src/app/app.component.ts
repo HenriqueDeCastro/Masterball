@@ -1,6 +1,6 @@
 import { Observable, delay } from 'rxjs';
 import { Component } from '@angular/core';
-import { LoadingService } from './core/services/loading/loading.service';
+import { LoadingService } from './core/factorys/loading/loading.service';
 
 @Component({
   selector: 'app-root',

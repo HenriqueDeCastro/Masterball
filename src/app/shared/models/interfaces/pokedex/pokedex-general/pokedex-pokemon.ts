@@ -1,4 +1,4 @@
-import { ResumeInfoPokeapi } from 'src/app/shared/models/interfaces/resume-info-pokeapi';
+import { ResumeInfoPokeapi } from 'src/app/shared/models/interfaces/pokeapi';
 
 export interface PokedexPokemon {
   entry_number: number;

@@ -1,3 +1,4 @@
+import { GetRegionsResolver } from './../../../core/resolvers/get-regions/get-regions.resolver';
 import { GetTypesResolver } from './../../../core/resolvers/get-types/get-types.resolver';
 import { PokedexHomeComponent } from './pokedex-home.component';
 import { NgModule } from '@angular/core';
@@ -10,7 +11,8 @@ const routes: Routes = [
     component: PokedexHomeComponent,
     resolve: {
       pokemons: GetPokemonsResolver,
-      types: GetTypesResolver
+      types: GetTypesResolver,
+      regions: GetRegionsResolver
     }
   },
 ];

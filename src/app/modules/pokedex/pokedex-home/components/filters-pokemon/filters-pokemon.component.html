@@ -1,13 +1,34 @@
-<div class="icons-filter-container">
-  <ng-container *ngFor="let type of types">
-    <ng-container *ngIf="type.name !== 'unknown' && type.name !== 'shadow'">
-      <div
-        class="type-tag-filter type-icon__{{type.name}}"
-        [ngClass]="typeSelected !== type.name? 'type-tag-filter__inactive' : ''"
-        (click)="selectFilter(eventSelectFilterEnum.TypePokemon ,type.name)">
-        <img src="assets/images/icons-types/{{type.name}}.svg" [alt]="type.name">
-        <span>{{type.name | titlecase}}</span>
-      </div>
+
+<ng-container *ngIf="{value:loading$ | async} as loading">
+  <div [ngClass]="loading.value? 'disable': ''">
+    <div class="icons-filter-container icons-filter-container__types">
+      <ng-container *ngFor="let type of types">
+        <ng-container *ngIf="type.name !== 'unknown' && type.name !== 'shadow'">
+          <div
+          class="tag-filter-type type-icon__{{type.name}}"
+          [ngClass]="typeSelected !== type.name? 'tag-filter-type__inactive' : ''"
+          (click)="selectFilter(eventSelectFilterEnum.TypePokemon ,type.name)">
+          <img src="assets/images/icons-types/{{type.name}}.svg" [alt]="type.name">
+          <span class="tag-filter-type__name">{{type.name | titlecase}}</span>
+        </div>
+      </ng-container>
     </ng-container>
-  </ng-container>
-</div>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="icons-filter-container icons-filter-container__regions">
+      <ng-container *ngFor="let region of regions">
+        <ng-container *ngFor="let pokedex of region.pokedexes">
+          <div
+            [ngClass]="regionSelected !== pokedex.url? 'tag-filter-region tag-filter-region__inactive' : 'tag-filter-region tag-filter-region__active-region'"
+            (click)="selectFilter(eventSelectFilterEnum.Region, pokedex.url)">
+            <ng-container *ngIf="regionSelected == pokedex.url">
+              <img src="assets/images/icons/world-map-active.svg" [alt]="pokedex.name">
+            </ng-container>
+            <span class="tag-filter-region__name">{{pokedex.name | pokedexName}}</span>
+          </div>
+        </ng-container>
+      </ng-container>
+    </div>
+  </div>
+</ng-container>
+

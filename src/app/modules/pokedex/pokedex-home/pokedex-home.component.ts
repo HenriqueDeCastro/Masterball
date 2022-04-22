@@ -1,10 +1,13 @@
+import { RegionService } from './../../../core/services/region/region.service';
 import { TypeService } from './../../../core/services/type/type.service';
 import { PokemonDetail } from 'src/app/shared/models/interfaces/pokemon';
 import { Observable, Subscription } from 'rxjs';
 import { PokemonService } from 'src/app/core/services/pokemon/pokemon.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ResumeInfoPokeapi } from 'src/app/shared/models/interfaces/resume-info-pokeapi';
+import { ResumeInfoPokeapi } from 'src/app/shared/models/interfaces/pokeapi';
 import { EventSelectFilter } from 'src/app/shared/models/interfaces/event';
+import { RegionDetail } from 'src/app/shared/models/interfaces/region';
+import { EventSelectFilterEnum } from 'src/app/shared/models/enum';
 
 @Component({
   selector: 'app-pokedex-home',
@@ -13,21 +16,24 @@ import { EventSelectFilter } from 'src/app/shared/models/interfaces/event';
 })
 export class PokedexHomeComponent implements OnInit, OnDestroy {
 
-  pokemons$!: Observable<PokemonDetail[]>;
-  nextPage$!: Observable<boolean>;
-  types$!: Observable<ResumeInfoPokeapi[]>;
+  pokemons$!: Observable<PokemonDetail[]>; // colocar no componente filho se possivel
+  nextPage$!: Observable<boolean>; // colocar no componente filho se possivel
+  types$!: Observable<ResumeInfoPokeapi[]>; // colocar no componente filho se possivel
+  regions$!: Observable<RegionDetail[]>; // colocar no componente filho se possivel
 
   textinfo: string;
-  searchValue!: string | null;
   showFilter!: boolean;
-  selectFilter!: string | null;
+  searchValue!: string | null;
+  typeFilter!: EventSelectFilter | null;
+  regionFilter!: EventSelectFilter | null;
 
-  private pokemonsGet$!: Subscription;
-  private currentPage: number;
+  private pokemonsGet$!: Subscription; // alterar para takUntil
 
-  constructor(private pokemonService: PokemonService, private typeService: TypeService) {
+  constructor(
+    private pokemonService: PokemonService,
+    private typeService: TypeService,
+    private regionService: RegionService) {
     this.textinfo = 'The Pokédex contains detailed stats for every creature from the Pokémon games';
-    this.currentPage = 1;
   }
 
 
@@ -35,47 +41,38 @@ export class PokedexHomeComponent implements OnInit, OnDestroy {
     this.pokemons$ = this.pokemonService.returnPokemons();
     this.nextPage$ = this.pokemonService.returnNextPagePokemon();
     this.types$ = this.typeService.returnTypes();
-    this.pokemonsGet$ = this.pokemonService.getAllPokemons({ currentPage: this.currentPage }).subscribe();
+    this.regions$ = this.regionService.returnRegions();
   }
 
-  receivedClicked(click: boolean): void {
-    if(click) {
-      if(this.selectFilter) {
-        this.pokemonsGet$ = this.pokemonService.getPokemonsByType(this.selectFilter!, { currentPage:this.currentPage++ }).subscribe();
-      } else {
-        this.pokemonsGet$ = this.pokemonService.getAllPokemons({ currentPage: this.currentPage++ }).subscribe();
-      }
-    }
+  receivedClickedViewMore(): void {
+    this.pokemonsByTypeRegion(false);
   }
 
   receiveSearch(value: string): void {
     this.unsubscribePokemons();
-    this.resetItemsBySearch();
-
-    if(value) {
-      this.searchValue = value;
-      this.pokemonsGet$ = this.pokemonService.getPokemonBySearch(this.searchValue).subscribe()
-    } else {
-      this.pokemonsGet$ = this.pokemonService.getAllPokemons({ currentPage: this.currentPage++, clearSubject: true }).subscribe();
-    }
+    this.searchValue = value;
+    this.pokemonsByTypeRegion(true);
   }
 
   receiveFilter(selected: EventSelectFilter): void {
     this.unsubscribePokemons();
-    this.resetItemsBySearch();
 
-    if(selected.checked) {
-      this.selectFilter = selected.value;
-      this.pokemonsGet$ = this.pokemonService.getPokemonsByType(this.selectFilter!, { currentPage: this.currentPage++, clearSubject: true }).subscribe();
-    } else {
-      this.pokemonsGet$ = this.pokemonService.getAllPokemons({ currentPage: this.currentPage++, clearSubject: true }).subscribe();
+    if(selected.type == EventSelectFilterEnum.TypePokemon) {
+      this.typeFilter = selected.checked? selected : null;
+    } else if(selected.type == EventSelectFilterEnum.Region) {
+      this.regionFilter = selected.checked? selected : null;
     }
+
+    this.pokemonsByTypeRegion(true);
   }
 
-  resetItemsBySearch(): void {
-    this.selectFilter = null;
-    this.searchValue = null;
-    this.currentPage = 0;
+  pokemonsByTypeRegion(clearSubject: boolean): void {
+    this.pokemonsGet$ = this.pokemonService.getPokemonsByPokedex({
+      clearSubject: clearSubject,
+      search: this.searchValue!,
+      url: this.regionFilter?.value,
+      type: this.typeFilter?.value
+    }).subscribe();
   }
 
   unsubscribePokemons(): void {

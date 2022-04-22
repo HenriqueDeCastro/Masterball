@@ -1,4 +1,4 @@
-<ng-container *ngIf="{ pokemons: pokemons$ | async, types: types$ | async } as infos">
+<ng-container *ngIf="{ pokemons: pokemons$ | async, types: types$ | async, regions: regions$ | async } as infos">
   <div class="pokemon-home-container">
 
     <div class="title-container">
@@ -16,7 +16,7 @@
     </div>
 
     <div [ngClass]="showFilter? 'filter-container filter-container__active' : 'filter-container' ">
-      <app-filters-pokemon [types]="infos.types!" [typeSelected]="selectFilter" (selected)="receiveFilter($event)"></app-filters-pokemon>
+      <app-filters-pokemon [types]="infos.types!" [regions]="infos.regions!" (selected)="receiveFilter($event)"></app-filters-pokemon>
     </div>
 
     <ng-container *ngIf="!!infos.pokemons?.length; else notPokemons">
@@ -30,7 +30,7 @@
 
       <ng-container *ngIf="nextPage$ | async as nextPage">
         <ng-container *ngIf="nextPage;">
-          <app-btn-view-more (clicked)="receivedClicked($event)"></app-btn-view-more>
+          <app-btn-view-more (clicked)="receivedClickedViewMore()"></app-btn-view-more>
         </ng-container>
       </ng-container>
     </ng-container>

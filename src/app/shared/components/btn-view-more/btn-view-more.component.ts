@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { delay, Observable } from 'rxjs';
-import { LoadingService } from 'src/app/core/services/loading/loading.service';
+import { LoadingService } from 'src/app/core/factorys/loading/loading.service';
 
 @Component({
   selector: 'app-btn-view-more',
