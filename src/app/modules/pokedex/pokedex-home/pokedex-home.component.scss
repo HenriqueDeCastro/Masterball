@@ -29,14 +29,19 @@
     }
   }
 
+  .text-info-padding {
+    padding: 1rem 0rem;
+  }
+
   .filter-container {
     overflow:hidden;
     max-height: 0px;
+    transition: max-height 0.5s ease-out;
 
     &__active {
       max-height: 1000px;
       transition: max-height 0.5s ease-in;
-      margin: 0.5rem -0.9rem;
+      margin: 0rem -0.9rem 0.5rem;
     }
   }
 
@@ -78,7 +83,6 @@
       flex-direction: row;
       justify-content: space-between;
       align-items: center;
-      margin: 0.75rem 0rem;
 
       &__title {
         width: 50%;
@@ -88,6 +92,10 @@
         margin-top: 0;
         width: 45%;
       }
+    }
+
+    .text-info-padding {
+      padding-bottom: 0.5rem;
     }
 
     .cards-list {

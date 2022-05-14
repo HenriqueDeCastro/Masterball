@@ -1,8 +1,8 @@
 
-<ng-container *ngIf="{value:loading$ | async} as loading">
-  <div [ngClass]="loading.value? 'disable': ''">
+<ng-container *ngIf="{ loading: loading$ | async, regions: regions$ | async, types: types$ | async } as infos">
+  <div [ngClass]="infos?.loading? 'element-disable': ''">
     <div class="icons-filter-container icons-filter-container__types">
-      <ng-container *ngFor="let type of types">
+      <ng-container *ngFor="let type of infos?.types">
         <ng-container *ngIf="type.name !== 'unknown' && type.name !== 'shadow'">
           <div
           class="tag-filter-type type-icon__{{type.name}}"
@@ -16,7 +16,7 @@
     </div>
     <mat-divider></mat-divider>
     <div class="icons-filter-container icons-filter-container__regions">
-      <ng-container *ngFor="let region of regions">
+      <ng-container *ngFor="let region of infos?.regions">
         <ng-container *ngFor="let pokedex of region.pokedexes">
           <div
             [ngClass]="regionSelected !== pokedex.url? 'tag-filter-region tag-filter-region__inactive' : 'tag-filter-region tag-filter-region__active-region'"

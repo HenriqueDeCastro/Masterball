@@ -1,13 +1,9 @@
-import { RegionService } from './../../../core/services/region/region.service';
-import { TypeService } from './../../../core/services/type/type.service';
-import { PokemonDetail } from 'src/app/shared/models/interfaces/pokemon';
 import { Observable, Subscription } from 'rxjs';
 import { PokemonService } from 'src/app/core/services/pokemon/pokemon.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ResumeInfoPokeapi } from 'src/app/shared/models/interfaces/pokeapi';
 import { EventSelectFilter } from 'src/app/shared/models/interfaces/event';
-import { RegionDetail } from 'src/app/shared/models/interfaces/region';
 import { EventSelectFilterEnum } from 'src/app/shared/models/enum';
+import { PokedexSubject } from 'src/app/shared/models/interfaces/pokedex';
 
 @Component({
   selector: 'app-pokedex-home',
@@ -16,32 +12,22 @@ import { EventSelectFilterEnum } from 'src/app/shared/models/enum';
 })
 export class PokedexHomeComponent implements OnInit, OnDestroy {
 
-  pokemons$!: Observable<PokemonDetail[]>; // colocar no componente filho se possivel
-  nextPage$!: Observable<boolean>; // colocar no componente filho se possivel
-  types$!: Observable<ResumeInfoPokeapi[]>; // colocar no componente filho se possivel
-  regions$!: Observable<RegionDetail[]>; // colocar no componente filho se possivel
-
-  textinfo: string;
+  pokedex$!: Observable<PokedexSubject>;
+  nextPage$!: Observable<boolean>;
   showFilter!: boolean;
   searchValue!: string | null;
   typeFilter!: EventSelectFilter | null;
   regionFilter!: EventSelectFilter | null;
+  textinfo: string;
+  private pokemonsGet$!: Subscription;
 
-  private pokemonsGet$!: Subscription; // alterar para takUntil
-
-  constructor(
-    private pokemonService: PokemonService,
-    private typeService: TypeService,
-    private regionService: RegionService) {
+  constructor(private pokemonService: PokemonService) {
     this.textinfo = 'The Pokédex contains detailed stats for every creature from the Pokémon games';
   }
 
-
   ngOnInit(): void {
-    this.pokemons$ = this.pokemonService.returnPokemons();
+    this.pokedex$ = this.pokemonService.returnPokedex();
     this.nextPage$ = this.pokemonService.returnNextPagePokemon();
-    this.types$ = this.typeService.returnTypes();
-    this.regions$ = this.regionService.returnRegions();
   }
 
   receivedClickedViewMore(): void {
@@ -83,6 +69,7 @@ export class PokedexHomeComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.unsubscribePokemons();
-    this.pokemonService.clearPokemons();
+    this.pokemonService.resetPokemons();
+    this.pokemonService.resetPokedex();
   }
 }

@@ -26,8 +26,8 @@ export class RegionService {
     );
   }
 
-  private insertRegions(types: RegionDetail[]): void {
-    this.regionSubject.next(types);
+  private insertRegions(regions: RegionDetail[]): void {
+    this.regionSubject.next(regions);
   }
 
   hasRegions(): boolean {

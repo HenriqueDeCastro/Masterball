@@ -10,6 +10,7 @@ import { BtnViewMoreModule } from 'src/app/shared/components/btn-view-more/btn-v
 import { SearchFieldModule } from 'src/app/shared/components/search-field/search-field.module';
 import { BtnFilterModule } from 'src/app/shared/components/btn-filter/btn-filter.module';
 import { FiltersPokemonModule } from './components/filters-pokemon/filters-pokemon.module';
+import { PokedexDescriptionModule } from 'src/app/shared/pipes/pokedex-description/pokedex-description.module';
 
 @NgModule({
   declarations: [ PokedexHomeComponent ],
@@ -21,7 +22,8 @@ import { FiltersPokemonModule } from './components/filters-pokemon/filters-pokem
     BtnFilterModule,
     SearchFieldModule,
     FiltersPokemonModule,
-    MatExpansionModule
+    MatExpansionModule,
+    PokedexDescriptionModule
   ]
 })
 export class PokedexHomeModule { }

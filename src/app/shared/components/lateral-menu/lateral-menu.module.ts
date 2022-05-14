@@ -6,6 +6,8 @@ import { LateralMenuComponent } from './lateral-menu.component';
 
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [ LateralMenuComponent ],
@@ -14,7 +16,9 @@ import { MatIconModule } from '@angular/material/icon';
     RouterModule,
     MatListModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    MatTooltipModule,
+    //BrowserAnimationsModule
   ],
   exports: [ LateralMenuComponent ]
 })

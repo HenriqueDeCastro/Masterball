@@ -1,5 +1,6 @@
 @import './assets/scss/colors-pokemons-types.scss';
 @import './assets/scss/custom-theme.scss';
+@import './assets/scss/elements-commons.scss';
 @import './assets/scss/fredoka-one.scss';
 @import './assets/scss/material-icons.scss';
 @import './assets/scss/open-sans.scss';
@@ -8,8 +9,3 @@
 @import './assets/scss/text-info.scss';
 
 html, body { height: 100%; margin: 0; overflow: hidden; }
-
-.disable {
-  pointer-events: none;
-  opacity: 0.5;
-}

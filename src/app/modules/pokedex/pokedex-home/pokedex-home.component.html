@@ -1,9 +1,10 @@
-<ng-container *ngIf="{ pokemons: pokemons$ | async, types: types$ | async, regions: regions$ | async } as infos">
+<ng-container *ngIf="pokedex$ | async as pokedex">
   <div class="pokemon-home-container">
 
     <div class="title-container">
       <div class="title-container__title">
-        <h1 class="notranslate title-container__title__text">Pokédex</h1>
+        <h1 class="title-container__title__text">Pokédex</h1>
+        <span class="text-info">{{pokedex?.description! | pokedexDescription}}</span>
         <span class="text-info text-info__desktop">{{textinfo}}</span>
       </div>
 
@@ -11,17 +12,17 @@
         <app-search-field class="title-container__filters__search" placeholder="Search for a Pokémon" (search)="receiveSearch($event)"></app-search-field>
         <app-btn-filter class="title-container__filters__filter" (clicked)="showFilter = !showFilter"></app-btn-filter>
       </div>
-
-      <span class="text-info text-info__mobile">{{textinfo}}</span>
     </div>
+
+    <span class="text-info text-info__mobile">{{textinfo}}</span>
 
     <div [ngClass]="showFilter? 'filter-container filter-container__active' : 'filter-container' ">
-      <app-filters-pokemon [types]="infos.types!" [regions]="infos.regions!" (selected)="receiveFilter($event)"></app-filters-pokemon>
+      <app-filters-pokemon (selected)="receiveFilter($event)"></app-filters-pokemon>
     </div>
 
-    <ng-container *ngIf="!!infos.pokemons?.length; else notPokemons">
+    <ng-container *ngIf="!!pokedex?.pokemonsDetails?.length; else notPokemons">
       <div class="cards-list">
-        <ng-container *ngFor="let pokemon of infos.pokemons">
+        <ng-container *ngFor="let pokemon of pokedex?.pokemonsDetails">
           <ng-container *ngIf="pokemon">
             <app-card-pokemon [pokemon]="pokemon" class="card-pokemon"></app-card-pokemon>
           </ng-container>
@@ -38,9 +39,8 @@
     <ng-template #notPokemons>
       <div class="not-pokemon">
         <img class="not-pokemon__img" src="assets/images/icons/psyduck-not-found.svg">
-        <p class="not-pokemon__text">No Pokemon <span class="not-pokemon__text__pokemon">"{{searchValue}}"</span> found!</p>
+        <p class="not-pokemon__text">No Pokemon <span *ngIf="searchValue" class="not-pokemon__text__pokemon">"{{searchValue}}"</span> found!</p>
       </div>
     </ng-template>
   </div>
 </ng-container>
-

@@ -1,0 +1,19 @@
+.element-disable {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.element-desktop {
+  display: none;
+}
+
+@media screen and (min-width: 950px) {
+
+  .element-mobile {
+    display: none;
+  }
+
+  .element-desktop {
+    display: block;
+  }
+}
