@@ -13,7 +13,7 @@ export class BtnViewMoreComponent {
   loading$: Observable<boolean>;
 
   constructor(private loadingService: LoadingService) {
-    this.loading$ = this.loadingService.getLoading().pipe(delay(0));
+    this.loading$ = this.loadingService.get().pipe(delay(0));
   }
 
   clickedEmit(): void {

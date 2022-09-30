@@ -1,13 +1,14 @@
-import { environment } from './../../../../environments/environment';
+import { environment } from '../../../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, forkJoin, mergeMap, Observable, tap, of, map, switchMap, take } from 'rxjs';
 
 import { PokemonDetail } from 'src/app/shared/models/interfaces/pokemon';
-import { TypeDetail } from './../../../shared/models/interfaces/type/type-detail/type-detail';
+import { TypeDetail } from '../../../shared/models/interfaces/type/type-detail/type-detail';
 import { PokemonWithSlot } from 'src/app/shared/models/interfaces/type';
 import { PokedexGeneral, PokedexPokemon, PokedexSubject } from 'src/app/shared/models/interfaces/pokedex';
 import { LastParamUrlService } from '../../factorys/last-param-url/last-param-url.service';
+import { PokedexParams } from 'src/app/shared/models/interfaces/params';
 
 const URL_POKEAPI = environment.url_pokeapi;
 const PAGE_SIZE = 24;
@@ -16,7 +17,7 @@ const POKEMONS_COUNT = 898;
 @Injectable({
   providedIn: 'root'
 })
-export class PokemonService {
+export class PokedexService {
 
   private url_api_pokemon = `${URL_POKEAPI}/pokemon`;
   private url_api_pokedex = `${URL_POKEAPI}/pokedex`;
@@ -31,45 +32,62 @@ export class PokemonService {
     this.nextPageSubject = new BehaviorSubject<boolean>(false);
   }
 
-  getPokemonsByPokedex(options?: { url?: string, search?: string, type?: string, clearSubject?: boolean }): Observable<PokemonDetail[]> {
-    const url_request = options?.url ?? `${this.url_api_pokedex}/1`;
+  get(params?: PokedexParams): Observable<PokemonDetail[]> {
+    const url_pokedex_request = params?.url ?? `${this.url_api_pokedex}/1`;
+    if(this.checkDifferentPokedexUrl(url_pokedex_request)) {
 
-    if(this.pokedexSubject?.getValue()?.url == url_request) {
-      if(this.pokedexSubject?.getValue()?.search !== options?.search || this.pokedexSubject?.getValue()?.type !== options?.type) {
-        this.currentPage = 0;
-        this.pokedexSubject.next({ ...this.pokedexSubject.getValue(), search: options?.search, type: options?.type });
-      } else {
-        this.currentPage++;
-      }
-
-      return this.pokedexSubject.asObservable().pipe(
-        take(1),
-        switchMap((pokedex: PokedexSubject): Observable<PokedexSubject> => this.pokemonsByType(pokedex)),
-        mergeMap((pokedex: PokedexSubject) => this.forkJoinPokemons(this.filterPokemons(pokedex.pokemonsGeneral!, pokedex.search))),
-        tap((pokemons: PokemonDetail[]) => this.insertPokemons(pokemons, { clear: options?.clearSubject }))
-      );
+      this.incrementCurrentPage(params?.search!, params?.type!);
+      return this.pokedexSubject.asObservable()
+        .pipe(
+          take(1),
+          switchMap((pokedex: PokedexSubject): Observable<PokedexSubject> => this.pokemonsByType(pokedex)),
+          mergeMap((pokedex: PokedexSubject) => this.forkJoinPokemons(this.filterPokemons(pokedex.pokemonsGeneral!, pokedex.search))),
+          tap((pokemons: PokemonDetail[]) => this.insertPokemons(pokemons, { clear: params?.clearSubject }))
+        );
 
     } else {
 
       this.currentPage = 0;
 
-      return this.http.get<PokedexGeneral>(url_request).pipe(
+      return this.http.get<PokedexGeneral>(url_pokedex_request).pipe(
         take(1),
         map((generalInfo: PokedexGeneral) => {
           return {
             pokemonsGeneral: generalInfo?.pokemon_entries,
             pokemonsDetails: this.pokedexSubject?.getValue()?.pokemonsDetails ?? [],
-            type: options?.type,
-            search: options?.search,
-            url: url_request,
+            type: params?.type,
+            search: params?.search,
+            url: url_pokedex_request,
             description: generalInfo?.descriptions[generalInfo?.descriptions?.length - 1]?.description,
           };
         }),
         tap((pokedex: PokedexSubject) => this.pokedexSubject.next(pokedex)),
         switchMap((pokedex: PokedexSubject): Observable<PokedexSubject> => this.pokemonsByType(pokedex)),
         mergeMap((pokedex: PokedexSubject): Observable<PokemonDetail[]> => this.forkJoinPokemons(this.filterPokemons(pokedex?.pokemonsGeneral!, pokedex.search))),
-        tap((pokemons: PokemonDetail[]) => this.insertPokemons(pokemons, { clear: options?.clearSubject }))
+        tap((pokemons: PokemonDetail[]) => this.insertPokemons(pokemons, { clear: params?.clearSubject }))
       );
+
+    }
+  }
+
+  private checkDifferentPokedexUrl(url_pokedex_request: string): boolean {
+    return this.pokedexSubject?.getValue()?.url == url_pokedex_request;
+  }
+
+  private checkChangedFilters(search: string, type: string): boolean {
+    return this.pokedexSubject?.getValue()?.search !== search || this.pokedexSubject?.getValue()?.type !== type;
+  }
+
+  private changeSearchAndType(search: string, type: string): void {
+    this.pokedexSubject.next({ ...this.pokedexSubject.getValue(), search: search, type: type });
+  }
+
+  private incrementCurrentPage(search: string, type: string): void {
+    if(this.checkChangedFilters(search, type)) {
+      this.changeSearchAndType(search, type);
+      this.currentPage = 0;
+    } else {
+      this.currentPage++;
     }
   }
 

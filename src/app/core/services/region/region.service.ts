@@ -17,7 +17,7 @@ export class RegionService {
 
   constructor(private http: HttpClient) { }
 
-  getAllRegions(): Observable<RegionDetail[]> {
+  get(): Observable<RegionDetail[]> {
     return this.http.get<any>(this.url_api).pipe(
       mergeMap((generalInfo: GeneralPokeapi): Observable<RegionDetail[]> => {
         return forkJoin(generalInfo?.results?.map((region: ResumeInfoPokeapi) => this.http.get<RegionDetail>(`${region.url}`)))

@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 export class LastParamUrlService {
 
   get(url: string): string {
-    return url.match('([^/]+)/?$')![1]
+    const lastParam: string = url.match('([^/]+)/?$')![1];
+    return lastParam;
   }
 }

@@ -20,6 +20,6 @@ export class GetTypesResolver implements Resolve<GeneralPokeapi | null> {
       return null;
     }
 
-    return this.typeService.getAllTypes();
+    return this.typeService.get();
   }
 }

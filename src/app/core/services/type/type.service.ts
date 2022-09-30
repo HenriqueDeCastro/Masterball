@@ -17,7 +17,7 @@ export class TypeService {
 
   constructor(private http: HttpClient) { }
 
-  getAllTypes(): Observable<GeneralPokeapi> {
+  get(): Observable<GeneralPokeapi> {
     return this.http.get<GeneralPokeapi>(this.url_api).pipe(
       tap((response: GeneralPokeapi) => this.insertTypes(response.results))
     );

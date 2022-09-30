@@ -1,5 +1,5 @@
 import { Observable, Subscription } from 'rxjs';
-import { PokemonService } from 'src/app/core/services/pokemon/pokemon.service';
+import { PokedexService } from 'src/app/core/services/pokedex/pokedex.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { EventSelectFilter } from 'src/app/shared/models/interfaces/event';
 import { EventSelectFilterEnum } from 'src/app/shared/models/enum';
@@ -21,13 +21,13 @@ export class PokedexHomeComponent implements OnInit, OnDestroy {
   textinfo: string;
   private pokemonsGet$!: Subscription;
 
-  constructor(private pokemonService: PokemonService) {
+  constructor(private pokedexService: PokedexService) {
     this.textinfo = 'The Pokédex contains detailed stats for every creature from the Pokémon games';
   }
 
   ngOnInit(): void {
-    this.pokedex$ = this.pokemonService.returnPokedex();
-    this.nextPage$ = this.pokemonService.returnNextPagePokemon();
+    this.pokedex$ = this.pokedexService.returnPokedex();
+    this.nextPage$ = this.pokedexService.returnNextPagePokemon();
   }
 
   receivedClickedViewMore(): void {
@@ -53,7 +53,7 @@ export class PokedexHomeComponent implements OnInit, OnDestroy {
   }
 
   pokemonsByTypeRegion(clearSubject: boolean): void {
-    this.pokemonsGet$ = this.pokemonService.getPokemonsByPokedex({
+    this.pokemonsGet$ = this.pokedexService.get({
       clearSubject: clearSubject,
       search: this.searchValue!,
       url: this.regionFilter?.value,
@@ -69,7 +69,7 @@ export class PokedexHomeComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.unsubscribePokemons();
-    this.pokemonService.resetPokemons();
-    this.pokemonService.resetPokedex();
+    this.pokedexService.resetPokemons();
+    this.pokedexService.resetPokedex();
   }
 }

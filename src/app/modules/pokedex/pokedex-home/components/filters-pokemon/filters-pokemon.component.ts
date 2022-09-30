@@ -29,7 +29,7 @@ export class FiltersPokemonComponent {
     private loadingService: LoadingService) {
     this.selected = new EventEmitter();
     this.eventSelectFilterEnum = EventSelectFilterEnum;
-    this.loading$ = this.loadingService.getLoading().pipe(delay(0));
+    this.loading$ = this.loadingService.get().pipe(delay(0));
     this.types$ = this.typeService.returnTypes();
     this.regions$ = this.regionService.returnRegions();
   }

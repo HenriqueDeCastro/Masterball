@@ -1,7 +1,7 @@
 import { RegionService } from './../../services/region/region.service';
 import { Injectable } from '@angular/core';
 import {
-  Router, Resolve,
+  Resolve,
   RouterStateSnapshot,
   ActivatedRouteSnapshot
 } from '@angular/router';
@@ -20,6 +20,6 @@ export class GetRegionsResolver implements Resolve<RegionDetail[] | null> {
       return null;
     }
 
-    return this.regionService.getAllRegions();
+    return this.regionService.get();
   }
 }
